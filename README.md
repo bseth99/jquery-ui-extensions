@@ -1,13 +1,13 @@
-jquery-ui-extensions
+jQuery UI Extensions
 ====================
 
 This my collection of customizations and enhancements to the standard jQuery UI library.  So far, this
 includes:
 
-   *Spinner*: Add ```alignment``` to the available options to create four different alternative 
+- **Spinner**: Add ```alignment``` to the available options to create four different alternative 
    layouts for the spin buttons.
    
-   *SlideSpinner*: Adds a Slider control to the Spinner to enable visual reference to where
+- **SlideSpinner**: Adds a Slider control to the Spinner to enable visual reference to where
    a user is in the valid range and a faster way to change values.
 
 
@@ -21,6 +21,9 @@ after the normal jQuery UI scripts.
 Also download the [CSS](https://raw.github.com/bseth99/jquery-ui-extensions/master/bseth99-jquery-ui.css)
 file and include it after any jQuery UI CSS files.
 
+You can also just browse the source and grab what you want to use.  Just be mindful of the dependancies:
+
+- **SlideSpinner**: Requires the enhanced Spinner control
 
 ## Demo
 
