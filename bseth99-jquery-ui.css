@@ -9,7 +9,7 @@
 .ui-spinner-left .ui-spinner-input { margin: .2em 0; margin-right: .4em; margin-left: 22px; text-align: right; }
 .ui-spinner-vertical .ui-spinner-input { margin: 0 .2em; margin-top: 12px; margin-bottom: 12px; text-align: center; }
 .ui-spinner-horizontal .ui-spinner-input { margin: .2em 0; margin-left: 12px; margin-right: 12px; text-align: center; }
-.ui-spinner-button {font-size: .5em; padding: 0; margin: 0; z-index: 100; text-align: center; position: absolute; cursor: default; display: block; overflow: hidden; }
+.ui-spinner-button {font-size: .5em; padding: 0; margin: 0; text-align: center; position: absolute; cursor: default; display: block; overflow: hidden; }
 .ui-spinner-right .ui-spinner-button { width: 16px; height: 50%; right: 0; }
 .ui-spinner-left .ui-spinner-button { width: 16px; height: 50%; left: 0; }
 .ui-spinner-vertical .ui-spinner-button { width: 100%; height: 10px; left: 0;  }
