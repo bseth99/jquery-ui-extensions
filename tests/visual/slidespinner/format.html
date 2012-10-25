@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Strict//EN">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+   <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css">
+
+   <title>SlideSpinner Extension</title>
+
+   <script src="http://code.jquery.com/jquery.js"></script>
+   <script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
+
+	<link rel="stylesheet" href="../../../themes/base/jquery.ui.spinner.css">
+	<link rel="stylesheet" href="../../../themes/base/jquery.ui.slidespinner.css">
+
+	<script src="../../../external/globalize.js"></script>
+	<script src="../../../ui/jquery.ui.spinner.js"></script>
+	<script src="../../../ui/jquery.ui.slidespinner.js"></script>
+
+<style>
+   * { font-family: sans-serif,arial; }
+
+	.ui-widget input { font-size: 12pt; width: 6em; }
+</style>
+
+<script>
+	$(function() {
+
+		$("#create").click(function () {
+
+				$("#vertical input").slidespinner({
+						alignment: "vertical",
+						min: -1000,
+						max: 1000,
+						step: 0.1,
+						numberFormat: "C"
+					});
+
+				$("#horizontal input").slidespinner({
+						alignment: "horizontal",
+						min: -1000,
+						max: 1000,
+						step: 0.1,
+						numberFormat: "C"
+					});
+
+			});
+
+		$("#destroy").click(function () {
+
+				$("#vertical input").slidespinner("destroy");
+				$("#horizontal input").slidespinner("destroy");
+
+			});
+
+	});
+</script>
+
+</head>
+<body>
+
+<h4>SlideSpinner Test</h4>
+
+<div>
+Now format as currency and make sure that works
+</div>
+<br/>
+
+<button id="create">Create</button>
+<button id="destroy">Destroy</button>
+
+<h5>Slider Spinner - Vertical</h5>
+<div id="vertical"><input /></div>
+
+<h5>Slider Spinner - Horizontal</h5>
+<div id="horizontal"><input /></div>
+
+</body>
+</html>

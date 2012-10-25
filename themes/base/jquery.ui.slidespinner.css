@@ -1,0 +1,6 @@
+
+
+.ui-slidespinner input { width: 2.5em; }
+
+.ui-slidespinner { position: relative; }
+.ui-slidespinner div { position: absolute; font-size: 7pt; }
