@@ -65,7 +65,7 @@ $.widget( "ui.slidespinner", $.ui.spinner, {
 
 		this.uiWrapper =
 			this.uiSpinner
-				.wrap( '<div>' )
+				.wrap( '<span>' )
 				.parent()
 				.addClass( 'ui-slidespinner' );
 
