@@ -1,4 +1,4 @@
-/*! Ben's jQuery UI Extensions - v0.1 - 2012-10-25
+/*! Ben's jQuery UI Extensions - v0.1 - 2012-10-26
 * https://github.com/bseth99/jquery-ui-extensions
 * Includes: jquery.ui.spinner.css, jquery.ui.slidespinner.css
 * Copyright 2012 Ben Olson; Licensed MIT */
@@ -31,9 +31,8 @@
 	background-position:-65px -16px;
 }
 
-
-
+.ui-slidespinner { position: relative; display: inline-block; }
+.ui-slidespinner .ui-spinner-vertical { margin-right: 20px; }
+.ui-slidespinner .ui-spinner-horizontal { margin-bottom: 20px; }
 .ui-slidespinner input { width: 2.5em; }
-
-.ui-slidespinner { position: relative; }
 .ui-slidespinner div { position: absolute; font-size: 7pt; }

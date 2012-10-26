@@ -1,4 +1,4 @@
-/*! Ben's jQuery UI Extensions - v0.1 - 2012-10-25
+/*! Ben's jQuery UI Extensions - v0.1 - 2012-10-26
 * https://github.com/bseth99/jquery-ui-extensions
 * Includes: jquery.ui.spinner.js, jquery.ui.slidespinner.js
 * Copyright 2012 Ben Olson; Licensed MIT */
@@ -535,7 +535,7 @@ $.widget( "ui.slidespinner", $.ui.spinner, {
 
 		this.uiWrapper =
 			this.uiSpinner
-				.wrap( '<div>' )
+				.wrap( '<span>' )
 				.parent()
 				.addClass( 'ui-slidespinner' );
 
