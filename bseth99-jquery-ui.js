@@ -552,7 +552,7 @@ $.widget( "ui.spinner", {
 
          for (;i<=cnt;i++) {
             $('<div>').addClass( 'ui-slider-label-ticks' )
-               .css( dir, Math.floor( i / cnt * 100 ) + '%' )
+               .css( dir, (Math.round( i / cnt * 10000 ) / 100) + '%' )
                .html( ( dir == 'left' ? '<span></span><br/>' : '<span></span> ' ) + ( labels[i*inr+min] ? labels[i*inr+min] : i*inr+min ) )
                .appendTo( $lbl );
          }
