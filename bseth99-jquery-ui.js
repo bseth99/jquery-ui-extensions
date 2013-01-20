@@ -1,7 +1,7 @@
-/*! Ben's jQuery UI Extensions - v0.1 - 2012-10-26
+/*! Ben's jQuery UI Extensions - v0.1 - 2013-01-20
 * https://github.com/bseth99/jquery-ui-extensions
-* Includes: jquery.ui.spinner.js, jquery.ui.slidespinner.js
-* Copyright 2012 Ben Olson; Licensed MIT */
+* Includes: jquery.ui.spinner.js, jquery.ui.labeledslider.js, jquery.ui.slidespinner.js
+* Copyright 2013 Ben Olson; Licensed MIT */
 
 (function( $ ) {
 
@@ -498,6 +498,113 @@ $.widget( "ui.spinner", {
 });
 
 }( jQuery ) );
+
+(function( $, undefined ) {
+
+
+    $.widget( "ui.labeledslider", $.ui.slider, {
+
+      options: {
+         tickInterval: 0,
+         tickLabels: null
+      },
+
+      uiSlider: null,
+      tickInterval: 0,
+
+      _create: function( ) {
+
+         this._super();
+
+         this.uiSlider =
+             this.element
+                .removeClass( 'ui-widget' )
+                .wrap( '<div class="ui-slider-wrapper ui-widget"></div>' )
+                .before( '<div class="ui-slider-labels">' )
+                .parent()
+                .addClass( this.orientation );
+
+         this._alignWithStep();
+
+         if ( this.orientation == 'horizontal' ) {
+            this.uiSlider
+               .width( this.uiSlider.children( '.ui-slider' ).width() );
+         } else {
+            this.uiSlider
+               .height( this.uiSlider.children( '.ui-slider' ).height() );
+         }
+
+         this._drawLabels();
+      },
+
+      _drawLabels: function () {
+
+         var labels = this.options.tickLabels || {},
+             $lbl = this.uiSlider.children( '.ui-slider-labels' ),
+             dir = this.orientation == 'horizontal' ? 'left' : 'bottom',
+             min = this.options.min,
+             max = this.options.max,
+             inr = this.tickInterval,
+             cnt = ( max - min ) / inr,
+             i = 0;
+
+         $lbl.html('');
+
+         for (;i<=cnt;i++) {
+            $('<div>').addClass( 'ui-slider-label-ticks' )
+               .css( dir, Math.floor( i / cnt * 100 ) + '%' )
+               .html( ( dir == 'left' ? '<span></span><br/>' : '<span></span> ' ) + ( labels[i*inr+min] ? labels[i*inr+min] : i*inr+min ) )
+               .appendTo( $lbl );
+         }
+
+      },
+
+      _setOption: function( key, value ) {
+
+          this._super( key, value );
+
+          switch ( key ) {
+
+             case 'tickInterval':
+             case 'tickLabels':
+             case 'min':
+             case 'max':
+             case 'step':
+
+                this._alignWithStep();
+                this._drawLabels();
+                break;
+
+             case 'orientation':
+
+                this.element
+                   .removeClass( 'horizontal vertical' )
+                   .addClass( this.orientation );
+
+                this._drawLabels();
+                break;
+          }
+       },
+
+       _alignWithStep: function () {
+          if ( this.options.tickInterval < this.options.step )
+            this.tickInterval = this.options.step;
+          else
+            this.tickInterval = this.options.tickInterval;
+       },
+
+       _destroy: function() {
+          this._super();
+          this.uiSlider.replaceWith( this.element );
+       },
+
+       widget: function() {
+          return this.uiSlider;
+       }
+
+   });
+
+}(jQuery));
 
 (function( $ ) {
 
