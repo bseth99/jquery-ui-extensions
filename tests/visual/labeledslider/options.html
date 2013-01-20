@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+<head>
+   <meta charset="utf-8">
+   <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css">
+
+   <title>LabeledSlider Different Sizes Test</title>
+
+   <script src="http://code.jquery.com/jquery.js"></script>
+   <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+
+   <link rel="stylesheet" href="../../../themes/base/jquery.ui.labeledslider.css">
+
+   <script src="../../../ui/jquery.ui.labeledslider.js"></script>
+
+   <script>
+   $(function() {
+
+      $('#slider1').labeledslider({ max: 6, tickInterval: 1 });
+      $('#slider2').labeledslider({ max: 10, step: 2, orientation: 'vertical', range: true });
+
+      $('#min').val(0).spinner({
+            min: 0,
+            max: 5,
+            spin: function ( e, ui ) {
+                  $('#slider1').labeledslider( 'option', 'min', ui.value );
+               }
+         });
+
+      $('#max').val(6).spinner({
+            min: 6,
+            max: 20,
+            spin: function ( e, ui ) {
+                  $('#slider1').labeledslider( 'option', 'max', ui.value );
+               }
+         });
+
+      $('#step').val(1).spinner({
+            min: 1,
+            max: 3,
+            spin: function ( e, ui ) {
+                  $('#slider1').labeledslider( 'option', 'step', ui.value );
+               }
+         });
+
+      $('#ticks').val(1).spinner({
+            min: 1,
+            max: 3,
+            spin: function ( e, ui ) {
+                  $('#slider1').labeledslider( 'option', 'tickInterval', ui.value );
+               }
+         });
+
+      $('#labels').attr('checked', false).on('click', function () {
+            var t = $(this).is(':checked'),
+                labels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+            labels = labels.concat(labels).concat(labels);
+
+            if (t) {
+               $('#slider1').labeledslider( 'option', 'tickLabels', labels );
+            } else {
+               $('#slider1').labeledslider( 'option', 'tickLabels', null );
+            }
+
+         });
+
+   });
+   </script>
+   <style>
+
+   * {
+      font-family:   Verdana, Arial, Helvetica, sans-serif;
+      font-size:     12pt;
+   }
+
+   .wrapper {
+      position: relative;
+      margin: auto;
+      width: 400px;
+      height: 400px;
+      margin-top: 50px;
+   }
+
+   .controls {
+      position: absolute;
+      bottom: 30px;
+      right: 0;
+      font-size: 8pt;
+      text-align: right;
+   }
+   .controls .label { font-size: .9em; }
+   .ui-spinner { width: 4em; }
+
+   </style>
+</head>
+<body>
+
+<div class="wrapper">
+   <h1>LabeledSlider Options Test</h1>
+
+   <div id="slider1"></div>
+   <br/>
+   <div id="slider2" style="height: 250px"></div>
+
+   <div class="controls">
+      <span class="label">Min: </span><input id="min" /><br/>
+      <span class="label">Max: </span><input id="max" /><br/>
+      <span class="label">Step: </span><input id="step" /><br/>
+      <span class="label">Tick Interval: </span><input id="ticks" /><br/>
+      <span class="label">Show Labels: </span><input id="labels" type="checkbox" />
+   </div>
+</div>
+
+</body>
+</html>

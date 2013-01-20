@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+   <meta charset="utf-8">
+   <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css">
+
+   <title>LabeledSlider Different Sizes Test</title>
+
+   <script src="http://code.jquery.com/jquery.js"></script>
+   <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+
+   <link rel="stylesheet" href="../../../themes/base/jquery.ui.labeledslider.css">
+
+   <script src="../../../ui/jquery.ui.labeledslider.js"></script>
+
+   <script>
+   $(function() {
+      $('#sized-h div').labeledslider({ max: 15 });
+      $('#size1-h div').labeledslider({ max: 4 });
+      $('#size2-h div').labeledslider({ max: 10 });
+      $('#size3-h div').labeledslider({ max: 10 });
+
+      $('#sized-v div').labeledslider({ max: 7, orientation: 'vertical' });
+      $('#size1-v div').labeledslider({ max: 4, orientation: 'vertical' });
+      $('#size2-v div').labeledslider({ max: 10, orientation: 'vertical' });
+      $('#size3-v div').labeledslider({ max: 10, orientation: 'vertical' });
+   });
+   </script>
+   <style>
+      body { font-size: 62.5%; }
+      .wrapper.horizontal { width: 400px; margin: auto; }
+      .wrapper.vertical { width: 400px; height: 250px; margin: auto; }
+      .wrapper.vertical > div { display: inline-block; }
+
+      #size1-h .ui-slider { width: 100px; }
+      #size2-h .ui-slider { width: 200px; }
+      #size3-h .ui-slider { width: 300px; }
+
+      #size1-v .ui-slider { height: 100px; }
+      #size2-v .ui-slider { height: 200px; }
+      #size3-v .ui-slider { height: 300px; }
+
+   </style>
+</head>
+<body>
+
+<div class="wrapper horizontal">
+   <h1>LabeledSlider Font Size Scaling Test</h1>
+
+   <div id="sized-h"><div></div></div>
+   <div id="size1-h"><div></div></div>
+   <div id="size2-h"><div></div></div>
+   <div id="size3-h"><div></div></div>
+</div>
+
+<div class="wrapper vertical ">
+   <div id="sized-v"><div></div></div>
+   <div id="size1-v"><div></div></div>
+   <div id="size2-v"><div></div></div>
+   <div id="size3-v"><div></div></div>
+</div>
+
+</body>
+</html>

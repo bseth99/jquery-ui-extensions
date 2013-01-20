@@ -4,52 +4,52 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-   <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css">
+   <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css">
 
    <title>SlideSpinner Extension</title>
 
    <script src="http://code.jquery.com/jquery.js"></script>
-   <script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
+   <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
 
-	<link rel="stylesheet" href="../../../themes/base/jquery.ui.spinner.css">
-	<link rel="stylesheet" href="../../../themes/base/jquery.ui.slidespinner.css">
+   <link rel="stylesheet" href="../../../themes/base/jquery.ui.spinner.css">
+   <link rel="stylesheet" href="../../../themes/base/jquery.ui.slidespinner.css">
 
-	<script src="../../../ui/jquery.ui.spinner.js"></script>
-	<script src="../../../ui/jquery.ui.slidespinner.js"></script>
+   <script src="../../../ui/jquery.ui.spinner.js"></script>
+   <script src="../../../ui/jquery.ui.slidespinner.js"></script>
 
 <style>
    * { font-family: sans-serif,arial; }
 
-	.ui-widget input { font-size: 12pt; }
+   .ui-widget input { font-size: 12pt; }
 </style>
 
 <script>
-	$(function() {
+   $(function() {
 
-		$('#create').click(function () {
+      $('#create').click(function () {
 
-				$('#vertical input').slidespinner({
-						alignment: 'vertical',
-						min: -100,
-						max: 100
-					});
+            $('#vertical input').slidespinner({
+                  alignment: 'vertical',
+                  min: -100,
+                  max: 100
+               });
 
-				$('#horizontal input').slidespinner({
-						alignment: 'horizontal',
-						min: -100,
-						max: 100
-					});
+            $('#horizontal input').slidespinner({
+                  alignment: 'horizontal',
+                  min: -100,
+                  max: 100
+               });
 
-			});
+         });
 
-		$('#destroy').click(function () {
+      $('#destroy').click(function () {
 
-				$('#vertical input').slidespinner('destroy');
-				$('#horizontal input').slidespinner('destroy');
+            $('#vertical input').slidespinner('destroy');
+            $('#horizontal input').slidespinner('destroy');
 
-			});
+         });
 
-	});
+   });
 </script>
 
 </head>

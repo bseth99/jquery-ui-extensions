@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+   <meta charset="utf-8">
+   <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css">
+
+   <title>LabeledSlider Font Size Scaling Test</title>
+
+   <script src="http://code.jquery.com/jquery.js"></script>
+   <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+
+   <link rel="stylesheet" href="../../../themes/base/jquery.ui.labeledslider.css">
+
+   <script src="../../../ui/jquery.ui.labeledslider.js"></script>
+
+   <script>
+   $(function() {
+      $('#size1-h div').labeledslider({ tickInterval: 10 });
+      $('#size2-h div').labeledslider({ tickInterval: 10 });
+      $('#size3-h div').labeledslider({ tickInterval: 10 });
+
+      $('#size1-v div').labeledslider({ tickInterval: 10, orientation: 'vertical' });
+      $('#size2-v div').labeledslider({ tickInterval: 10, orientation: 'vertical' });
+      $('#size3-v div').labeledslider({ tickInterval: 10, orientation: 'vertical' });
+   });
+   </script>
+   <style>
+      body { font-size: 62.5%; }
+      .wrapper.horizontal { width: 400px; margin: auto; }
+      .wrapper.vertical { width: 400px; height: 250px; margin: auto; }
+      .wrapper.vertical > div { display: inline-block; }
+      .wrapper.vertical > div .ui-slider { height: 250px; }
+
+      #size1-h, #size1-v { font-size: 8pt; }
+      #size2-h, #size2-v { font-size: 12pt; }
+      #size3-h, #size3-v { font-size: 16pt; }
+   </style>
+</head>
+<body>
+
+<div class="wrapper horizontal">
+   <h1>LabeledSlider Font Size Scaling Test</h1>
+
+   <div id="size1-h"><div></div></div>
+   <div id="size2-h"><div></div></div>
+   <div id="size3-h"><div></div></div>
+</div>
+
+<div class="wrapper vertical ">
+   <div id="size1-v"><div></div></div>
+   <div id="size2-v"><div></div></div>
+   <div id="size3-v"><div></div></div>
+</div>
+
+</body>
+</html>
