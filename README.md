@@ -9,7 +9,9 @@ includes:
    
 - **SlideSpinner**: Adds a Slider control to the Spinner to enable visual reference to where
    a user is in the valid range and a faster way to change values.
-
+   
+- **LabeledSlider**: Adds tick marks at configurable intervals to the Slider control.  Optional text labels
+   can also be passed to the widget.
 
 ## Usage
 
