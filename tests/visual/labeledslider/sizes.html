@@ -15,15 +15,15 @@
 
    <script>
    $(function() {
-      $('#sized-h div').labeledslider({ max: 15 });
-      $('#size1-h div').labeledslider({ max: 4 });
-      $('#size2-h div').labeledslider({ max: 10 });
-      $('#size3-h div').labeledslider({ max: 10 });
+      $('#sized-h').labeledslider({ max: 15 });
+      $('#size1-h').labeledslider({ max: 4 });
+      $('#size2-h').labeledslider({ max: 10 });
+      $('#size3-h').labeledslider({ max: 10 });
 
-      $('#sized-v div').labeledslider({ max: 7, orientation: 'vertical' });
-      $('#size1-v div').labeledslider({ max: 4, orientation: 'vertical' });
-      $('#size2-v div').labeledslider({ max: 10, orientation: 'vertical' });
-      $('#size3-v div').labeledslider({ max: 10, orientation: 'vertical' });
+      $('#sized-v').labeledslider({ max: 7, orientation: 'vertical' });
+      $('#size1-v').labeledslider({ max: 4, orientation: 'vertical' });
+      $('#size2-v').labeledslider({ max: 10, orientation: 'vertical' });
+      $('#size3-v').labeledslider({ max: 10, orientation: 'vertical' });
    });
    </script>
    <style>
@@ -32,13 +32,13 @@
       .wrapper.vertical { width: 400px; height: 250px; margin: auto; }
       .wrapper.vertical > div { display: inline-block; }
 
-      #size1-h .ui-slider { width: 100px; }
-      #size2-h .ui-slider { width: 200px; }
-      #size3-h .ui-slider { width: 300px; }
+      #size1-h { width: 100px; }
+      #size2-h { width: 200px; }
+      #size3-h { width: 300px; }
 
-      #size1-v .ui-slider { height: 100px; }
-      #size2-v .ui-slider { height: 200px; }
-      #size3-v .ui-slider { height: 300px; }
+      #size1-v { height: 100px; }
+      #size2-v { height: 200px; }
+      #size3-v { height: 300px; }
 
    </style>
 </head>
@@ -47,17 +47,17 @@
 <div class="wrapper horizontal">
    <h1>LabeledSlider Font Size Scaling Test</h1>
 
-   <div id="sized-h"><div></div></div>
-   <div id="size1-h"><div></div></div>
-   <div id="size2-h"><div></div></div>
-   <div id="size3-h"><div></div></div>
+   <div id="sized-h"></div>
+   <div id="size1-h"></div>
+   <div id="size2-h"></div>
+   <div id="size3-h"></div>
 </div>
 
 <div class="wrapper vertical ">
-   <div id="sized-v"><div></div></div>
-   <div id="size1-v"><div></div></div>
-   <div id="size2-v"><div></div></div>
-   <div id="size3-v"><div></div></div>
+   <div id="sized-v"></div>
+   <div id="size1-v"></div>
+   <div id="size2-v"></div>
+   <div id="size3-v"></div>
 </div>
 
 </body>
