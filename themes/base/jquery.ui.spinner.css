@@ -2,12 +2,13 @@
  * jQuery UI Spinner @VERSION
  * http://jqueryui.com
  *
- * Copyright 2012 jQuery Foundation and other contributors
+ * Copyright 2013 jQuery Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
  * http://docs.jquery.com/UI/Spinner#theming
  */
+
 .ui-spinner { position:relative; display: inline-block; overflow: hidden; padding: 0; vertical-align: middle; }
 .ui-spinner-input { border: none; background: none; padding: 0; vertical-align: middle; }
 .ui-spinner-right .ui-spinner-input { margin: .2em 0; margin-left: .4em; margin-right: 22px; }
@@ -32,6 +33,6 @@
 
 /* TR overrides */
 .ui-spinner .ui-icon-triangle-1-s {
-	/* need to fix icons sprite */
-	background-position:-65px -16px;
+   /* need to fix icons sprite */
+   background-position: -65px -16px;
 }
