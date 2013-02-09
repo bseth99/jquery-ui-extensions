@@ -1,4 +1,4 @@
-/*! Ben's jQuery UI Extensions - v0.1 - 2013-01-27
+/*! Ben's jQuery UI Extensions - v0.1 - 2013-02-08
 * https://github.com/bseth99/jquery-ui-extensions
 * Includes: jquery.ui.spinner.js, jquery.ui.labeledslider.js, jquery.ui.slidespinner.js
 * Copyright 2013 Ben Olson; Licensed MIT */
@@ -528,16 +528,19 @@ $.widget( "ui.spinner", {
 
       _create: function( ) {
 
-         this._super();
+         this._detectOrientation();
 
          this.uiSlider =
              this.element
-                .removeClass( 'ui-widget' )
                 .wrap( '<div class="ui-slider-wrapper ui-widget"></div>' )
                 .before( '<div class="ui-slider-labels">' )
                 .parent()
                 .addClass( this.orientation )
                 .css( 'font-size', this.element.css('font-size') );
+
+         this._super();
+
+         this.element.removeClass( 'ui-widget' )
 
          this._alignWithStep();
 
