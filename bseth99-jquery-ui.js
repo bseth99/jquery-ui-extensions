@@ -1,4 +1,4 @@
-/*! Ben's jQuery UI Extensions - v0.1 - 2013-02-08
+/*! Ben's jQuery UI Extensions - v0.1 - 2013-03-15
 * https://github.com/bseth99/jquery-ui-extensions
 * Includes: jquery.ui.spinner.js, jquery.ui.labeledslider.js, jquery.ui.slidespinner.js
 * Copyright 2013 Ben Olson; Licensed MIT */
@@ -95,6 +95,7 @@ $.widget( "ui.spinner", {
 				return;
 			}
 
+			this._stop();
 			this._refresh();
 			if ( this.previous !== this.element.val() ) {
 				this._trigger( "change", event );
@@ -391,24 +392,33 @@ $.widget( "ui.spinner", {
 			}
 		}
 		if ( key === "icons" ) {
-			this.buttons.first().find( ".ui-icon" )
-				.removeClass( this.options.icons.up )
-				.addClass( value.up );
-			this.buttons.last().find( ".ui-icon" )
-				.removeClass( this.options.icons.down )
-				.addClass( value.down );
+			if ( this.options.alignment == 'horizontal' ) {
+
+				this.buttons.first().find( ".ui-icon" )
+					.removeClass( this.options.icons.left )
+					.addClass( value.left );
+				this.buttons.last().find( ".ui-icon" )
+					.removeClass( this.options.icons.right )
+					.addClass( value.right );
+
+			} else {
+
+				this.buttons.first().find( ".ui-icon" )
+					.removeClass( this.options.icons.up )
+					.addClass( value.up );
+				this.buttons.last().find( ".ui-icon" )
+					.removeClass( this.options.icons.down )
+					.addClass( value.down );
+
+			}
 		}
 
 		this._super( key, value );
 
 		if ( key === "disabled" ) {
-			if ( value ) {
-				this.element.prop( "disabled", true );
-				this.buttons.button( "disable" );
-			} else {
-				this.element.prop( "disabled", false );
-				this.buttons.button( "enable" );
-			}
+			this.widget().toggleClass( "ui-state-disabled", !!value );
+			this.element.prop( "disabled", !!value );
+			this.buttons.button( value ? "disable" : "enable" );
 		}
 	},
 
