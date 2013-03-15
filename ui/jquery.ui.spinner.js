@@ -105,6 +105,7 @@ $.widget( "ui.spinner", {
 				return;
 			}
 
+			this._stop();
 			this._refresh();
 			if ( this.previous !== this.element.val() ) {
 				this._trigger( "change", event );
@@ -401,24 +402,33 @@ $.widget( "ui.spinner", {
 			}
 		}
 		if ( key === "icons" ) {
-			this.buttons.first().find( ".ui-icon" )
-				.removeClass( this.options.icons.up )
-				.addClass( value.up );
-			this.buttons.last().find( ".ui-icon" )
-				.removeClass( this.options.icons.down )
-				.addClass( value.down );
+			if ( this.options.alignment == 'horizontal' ) {
+
+				this.buttons.first().find( ".ui-icon" )
+					.removeClass( this.options.icons.left )
+					.addClass( value.left );
+				this.buttons.last().find( ".ui-icon" )
+					.removeClass( this.options.icons.right )
+					.addClass( value.right );
+
+			} else {
+
+				this.buttons.first().find( ".ui-icon" )
+					.removeClass( this.options.icons.up )
+					.addClass( value.up );
+				this.buttons.last().find( ".ui-icon" )
+					.removeClass( this.options.icons.down )
+					.addClass( value.down );
+
+			}
 		}
 
 		this._super( key, value );
 
 		if ( key === "disabled" ) {
-			if ( value ) {
-				this.element.prop( "disabled", true );
-				this.buttons.button( "disable" );
-			} else {
-				this.element.prop( "disabled", false );
-				this.buttons.button( "enable" );
-			}
+			this.widget().toggleClass( "ui-state-disabled", !!value );
+			this.element.prop( "disabled", !!value );
+			this.buttons.button( value ? "disable" : "enable" );
 		}
 	},
 
