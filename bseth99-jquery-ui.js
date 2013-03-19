@@ -1,6 +1,6 @@
-/*! Ben's jQuery UI Extensions - v0.1 - 2013-03-15
+/*! Ben's jQuery UI Extensions - v0.1 - 2013-03-19
 * https://github.com/bseth99/jquery-ui-extensions
-* Includes: jquery.ui.spinner.js, jquery.ui.labeledslider.js, jquery.ui.slidespinner.js
+* Includes: jquery.ui.spinner.js, jquery.ui.combobox.js, jquery.ui.labeledslider.js, jquery.ui.slidespinner.js
 * Copyright 2013 Ben Olson; Licensed MIT */
 
 (function( $ ) {
@@ -522,6 +522,178 @@ $.widget( "ui.spinner", {
 });
 
 }( jQuery ) );
+
+(function( $, undefined ) {
+
+   $.widget( "ui.combobox", {
+
+      widgetEventPrefix: "combobox",
+
+      uiCombo: null,
+      uiInput: null,
+
+      _create: function() {
+
+         var self = this,
+             select = this.element.hide(),
+             input, wrapper;
+
+         select.prop('selectedIndex', -1);
+
+         input = this.uiInput =
+                  $( "<input />" )
+                      .insertAfter(select)
+                      .addClass("ui-widget ui-widget-content ui-corner-left ui-combobox-input");
+
+         wrapper = this.uiCombo =
+            input.wrap( '<span>' )
+               .parent()
+               .addClass( 'ui-combobox ui-front' )
+               .insertAfter( select );
+
+         input
+          .autocomplete({
+
+             delay: 0,
+             minLength: 0,
+
+             source: function(request, response) {
+
+                var matcher = new RegExp( $.ui.autocomplete.escapeRegex(request.term), 'i' );
+                response( select.children('option').map(function() {
+
+                         var text = $( this ).text();
+
+                         if ( this.value && ( !request.term || matcher.test(text) ) ) {
+
+                            return {
+                                  label: text.replace(
+                                     new RegExp(
+                                        "(?![^&;]+;)(?!<[^<>]*)(" +
+                                        $.ui.autocomplete.escapeRegex(request.term) +
+                                        ")(?![^<>]*>)(?![^&;]+;)", "gi"),
+                                        "<strong>$1</strong>"),
+                                  value: text,
+                                  option: this
+                               };
+                         }
+                     })
+                  );
+            },
+
+            select: function( event, ui ) {
+
+               ui.item.option.selected = true;
+               self._trigger( "select", event, {
+                     item: ui.item.option
+                  });
+
+            },
+
+            change: function(event, ui) {
+
+               if ( !ui.item ) {
+
+                  var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( $(this).val() ) + "$", "i" ),
+                  valid = false;
+
+                  select.children( "option" ).each(function() {
+                        if ( this.value.match( matcher ) ) {
+                           this.selected = valid = true;
+                           return false;
+                        }
+                     });
+
+                   if ( !valid ) {
+
+                      // remove invalid value, as it didn't match anything
+                      $( this ).val( "" );
+                      select.prop('selectedIndex', -1);
+                      return false;
+
+                   }
+               }
+
+               self._trigger( "change", event, {
+                     item: ui.item.option
+                   });
+
+            },
+
+            open: function ( event, ui ) {
+
+               wrapper.children('.ui-front')
+                  .outerWidth(wrapper.outerWidth()-4);
+            }
+
+          });
+
+         input.data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+
+               return $( "<li></li>" )
+                           .data( "item.autocomplete", item )
+                           .append( "<a>" + item.label + "</a>" )
+                           .appendTo( ul );
+
+            };
+
+         $( "<button>" )
+            .attr( "tabIndex", -1 )
+            .attr( "title", "Show All Items" )
+            .text('&nbsp;')
+            .insertAfter( input )
+            .button({
+               icons: {
+                  primary: "ui-icon-triangle-1-s"
+               },
+               text: false
+            })
+            .removeClass( "ui-corner-all" )
+            .addClass( "ui-corner-right ui-button-icon ui-combobox-button" )
+            .click(function() {
+                  // close if already visible
+                  if (input.autocomplete("widget").is(":visible")) {
+                     input.autocomplete("close");
+                     return;
+                  }
+                  // pass empty string as value to search for, displaying all results
+                  input.autocomplete("search", "");
+                  input.focus();
+               });
+      },
+
+      value: function ( newVal ) {
+         var select = this.element,
+             valid = false,
+             selected;
+
+         if ( !arguments.length ) {
+            selected = select.children( ":selected" );
+            return selected.length > 0 ? selected.val() : null;
+         }
+
+         select.prop('selectedIndex', -1);
+         select.children('option').each(function() {
+               if ( this.value == newVal ) {
+                  this.selected = valid = true;
+                  return false;
+               }
+            });
+
+         if ( valid )
+            this.uiInput.val(select.children(':selected').text());
+
+      },
+
+      _destroy: function () {
+         this.uiCombo.remove();
+         this.element.show();
+      }
+
+    });
+
+
+}(jQuery));
 
 (function( $, undefined ) {
 

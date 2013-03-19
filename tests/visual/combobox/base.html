@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Strict//EN">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+   <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css">
+
+   <title>ComboBox Extension</title>
+
+   <script src="http://code.jquery.com/jquery.js"></script>
+   <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+
+   <link rel="stylesheet" href="../../../themes/base/jquery.ui.combobox.css">
+   <script src="../../../ui/jquery.ui.combobox.js"></script>
+
+<style>
+   * { font-family: sans-serif,arial; }
+
+   .ui-widget input { font-size: 12pt; }
+</style>
+
+<script>
+   $(function() {
+
+      $('#create').click(function () {
+
+            $('select').combobox();
+
+         });
+
+      $('#destroy').click(function () {
+
+            $('select').combobox('destroy');
+
+         });
+
+   });
+</script>
+
+</head>
+<body>
+
+<h4>ComboBox Test</h4>
+
+<div>
+Test the widget creates and destroys as expected.  Validate CSS layout.
+</div>
+<br/>
+
+<button id="create">Create</button>
+<button id="destroy">Destroy</button>
+
+<br/>
+<select>
+   <option>One</option>
+   <option>Two</option>
+   <option>Three</option>
+</select>
+<select>
+   <option>Four</option>
+   <option>Five</option>
+   <option>Six</option>
+</select>
+<br/>
+<select>
+   <option>Seven</option>
+   <option>Eight</option>
+   <option>Nine</option>
+</select>
+
+
+</body>
+</html>
