@@ -37,12 +37,13 @@
 
       uiCombo: null,
       uiInput: null,
+      _wasOpen: false,
 
       _create: function() {
 
          var self = this,
              select = this.element.hide(),
-             input, wrapper, wasOpen;
+             input, wrapper;
 
          select.prop('selectedIndex', -1);
 
@@ -64,89 +65,12 @@
              minLength: 0,
 
              appendTo: wrapper,
-             source: function(request, response) {
-
-                var matcher = new RegExp( $.ui.autocomplete.escapeRegex(request.term), 'i' );
-                response( select.children('option').map(function() {
-
-                         var text = $( this ).text();
-
-                         if ( this.value && ( !request.term || matcher.test(text) ) ) {
-
-                            return {
-                                  label: text.replace(
-                                     new RegExp(
-                                        "(?![^&;]+;)(?!<[^<>]*)(" +
-                                        $.ui.autocomplete.escapeRegex(request.term) +
-                                        ")(?![^<>]*>)(?![^&;]+;)", "gi"),
-                                        "<strong>$1</strong>"),
-                                  value: text,
-                                  option: this
-                               };
-                         }
-                     })
-                  );
-            },
-
-            select: function( event, ui ) {
-
-               ui.item.option.selected = true;
-               self._trigger( "select", event, {
-                     item: ui.item.option
-                  });
-
-            },
-
-            change: function(event, ui) {
-
-               if ( !ui.item ) {
-
-                  var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( $(this).val() ) + "$", "i" ),
-                  valid = false;
-
-                  select.children( "option" ).each(function() {
-                        if ( this.value.match( matcher ) ) {
-                           this.selected = valid = true;
-                           return false;
-                        }
-                     });
-
-                   if ( !valid ) {
-
-                      // remove invalid value, as it didn't match anything
-                      $( this ).val( "" );
-                      select.prop('selectedIndex', -1);
-                      return false;
-
-                   }
-               }
-
-               self._trigger( "change", event, {
-                     item: ui.item.option
-                   });
-
-            },
-
-            open: function ( event, ui ) {
-
-               wrapper.children('.ui-autocomplete')
-                  .outerWidth(wrapper.outerWidth(true));
-            }
+             source: $.proxy( this, "_linkSelectList" )
 
           });
 
-         input.data( "ui-autocomplete" )._renderItem = function( ul, item ) {
-
-               return $( "<li></li>" )
-                           .data( "item.autocomplete", item )
-                           .append( "<a>" + item.label + "</a>" )
-                           .appendTo( ul );
-
-            };
-
          $( "<button>" )
             .attr( "tabIndex", -1 )
-            .attr( "title", "Show All Items" )
             .insertAfter( input )
             .button({
                icons: {
@@ -155,22 +79,114 @@
                text: false
             })
             .removeClass( "ui-corner-all" )
-            .addClass( "ui-corner-right ui-button-icon ui-combobox-button" )
-            .mousedown(function () {
-                  wasOpen = input.autocomplete("widget").is(":visible");
-               })
-            .click(function() {
+            .addClass( "ui-corner-right ui-button-icon ui-combobox-button" );
 
-                  input.focus();
 
-                  // close if already visible
-                  if (wasOpen)
-                     return;
+         // Our items have HTML tags.  The default rendering uses text()
+         // to set the content of the <a> tag.  We need html().
+         input.data( "ui-autocomplete" )._renderItem = function( ul, item ) {
 
-                  // pass empty string as value to search for, displaying all results
-                  input.autocomplete("search", "");
+               return $( "<li>" )
+                           .append( $( "<a>" ).html( item.label ) )
+                           .appendTo( ul );
 
+            };
+
+         this._on( this._events );
+
+      },
+
+
+      _linkSelectList: function( request, response ) {
+
+         var matcher = new RegExp( $.ui.autocomplete.escapeRegex(request.term), 'i' );
+         response( this.element.children('option').map(function() {
+
+                  var text = $( this ).text();
+
+                  if ( this.value && ( !request.term || matcher.test(text) ) ) {
+
+                     return {
+                           label: text.replace(
+                              new RegExp(
+                                  "(?![^&;]+;)(?!<[^<>]*)(" +
+                                  $.ui.autocomplete.escapeRegex(request.term) +
+                                  ")(?![^<>]*>)(?![^&;]+;)", "gi"),
+                                  "<strong>$1</strong>"),
+                           value: text,
+                           option: this
+                        };
+                  }
+              })
+           );
+      },
+
+      _events: {
+
+         "autocompletechange input" : function(event, ui) {
+
+            var $el = $(event.currentTarget);
+
+            if ( !ui.item ) {
+
+               var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( $el.val() ) + "$", "i" ),
+               valid = false;
+
+               this.element.children( "option" ).each(function() {
+                     if ( this.value.match( matcher ) ) {
+                        this.selected = valid = true;
+                        return false;
+                     }
+                  });
+
+                if ( !valid ) {
+
+                   // remove invalid value, as it didn't match anything
+                   $el.val( "" );
+                   this.element.prop('selectedIndex', -1);
+                   return false;
+
+                }
+            }
+
+            this._trigger( "change", event, {
+                  item: ui.item ? ui.item.option : null
+                });
+
+         },
+
+         "autocompleteselect input": function( event, ui ) {
+
+            ui.item.option.selected = true;
+            this._trigger( "select", event, {
+                  item: ui.item.option
                });
+
+         },
+
+         "autocompleteopen input": function ( event, ui ) {
+
+            this.uiCombo.children('.ui-autocomplete')
+               .outerWidth(this.uiCombo.outerWidth(true));
+         },
+
+         "mousedown .ui-combobox-button" : function ( event ) {
+            this._wasOpen = this.uiInput.autocomplete("widget").is(":visible");
+         },
+
+         "click .ui-combobox-button" : function( event ) {
+
+            this.uiInput.focus();
+
+            // close if already visible
+            if (this._wasOpen)
+               return;
+
+            // pass empty string as value to search for, displaying all results
+            this.uiInput.autocomplete("search", "");
+
+         }
+
       },
 
       value: function ( newVal ) {
@@ -197,8 +213,12 @@
       },
 
       _destroy: function () {
-         this.uiCombo.remove();
          this.element.show();
+         this.uiCombo.replaceWith( this.element );
+      },
+
+      widget: function () {
+         return this.uiCombo;
       }
 
     });
