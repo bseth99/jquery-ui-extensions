@@ -536,7 +536,7 @@ $.widget( "ui.spinner", {
 
          var self = this,
              select = this.element.hide(),
-             input, wrapper;
+             input, wrapper, wasOpen;
 
          select.prop('selectedIndex', -1);
 
@@ -650,15 +650,20 @@ $.widget( "ui.spinner", {
             })
             .removeClass( "ui-corner-all" )
             .addClass( "ui-corner-right ui-button-icon ui-combobox-button" )
+            .mousedown(function () {
+                  wasOpen = input.autocomplete("widget").is(":visible");
+               })
             .click(function() {
+
+                  input.focus();
+
                   // close if already visible
-                  if (input.autocomplete("widget").is(":visible")) {
-                     input.autocomplete("close");
+                  if (wasOpen)
                      return;
-                  }
+
                   // pass empty string as value to search for, displaying all results
                   input.autocomplete("search", "");
-                  input.focus();
+
                });
       },
 
