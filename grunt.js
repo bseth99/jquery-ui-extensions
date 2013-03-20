@@ -15,7 +15,8 @@ var
    cssFiles = [
       "spinner",
       "slidespinner",
-      "labeledslider"
+      "labeledslider",
+      "combobox"
    ].map(function( component ) {
       return "themes/base/jquery.ui." + component + ".css";
    }),

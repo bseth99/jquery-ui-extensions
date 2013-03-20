@@ -1,4 +1,4 @@
-/*! Ben's jQuery UI Extensions - v0.1 - 2013-03-19
+/*! Ben's jQuery UI Extensions - v0.1 - 2013-03-20
 * https://github.com/bseth99/jquery-ui-extensions
 * Includes: jquery.ui.spinner.js, jquery.ui.combobox.js, jquery.ui.labeledslider.js, jquery.ui.slidespinner.js
 * Copyright 2013 Ben Olson; Licensed MIT */
@@ -548,7 +548,7 @@ $.widget( "ui.spinner", {
          wrapper = this.uiCombo =
             input.wrap( '<span>' )
                .parent()
-               .addClass( 'ui-combobox ui-front' )
+               .addClass( 'ui-combobox' )
                .insertAfter( select );
 
          input
@@ -557,6 +557,7 @@ $.widget( "ui.spinner", {
              delay: 0,
              minLength: 0,
 
+             appendTo: wrapper,
              source: function(request, response) {
 
                 var matcher = new RegExp( $.ui.autocomplete.escapeRegex(request.term), 'i' );
@@ -622,8 +623,8 @@ $.widget( "ui.spinner", {
 
             open: function ( event, ui ) {
 
-               wrapper.children('.ui-front')
-                  .outerWidth(wrapper.outerWidth()-4);
+               wrapper.children('.ui-autocomplete')
+                  .outerWidth(wrapper.outerWidth(true));
             }
 
           });
@@ -640,7 +641,6 @@ $.widget( "ui.spinner", {
          $( "<button>" )
             .attr( "tabIndex", -1 )
             .attr( "title", "Show All Items" )
-            .text('&nbsp;')
             .insertAfter( input )
             .button({
                icons: {

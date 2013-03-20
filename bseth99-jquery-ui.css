@@ -1,6 +1,6 @@
-/*! Ben's jQuery UI Extensions - v0.1 - 2013-03-19
+/*! Ben's jQuery UI Extensions - v0.1 - 2013-03-20
 * https://github.com/bseth99/jquery-ui-extensions
-* Includes: jquery.ui.spinner.css, jquery.ui.slidespinner.css, jquery.ui.labeledslider.css
+* Includes: jquery.ui.spinner.css, jquery.ui.slidespinner.css, jquery.ui.labeledslider.css, jquery.ui.combobox.css
 * Copyright 2013 Ben Olson; Licensed MIT */
 
 .ui-spinner { position:relative; display: inline-block; overflow: hidden; padding: 0; vertical-align: middle; }
@@ -51,3 +51,9 @@
 .vertical .ui-slider-labels { left: 0.7em; top: 0.4em; margin-left: -0.15em; height: 100%; }
 .vertical .ui-slider-label-ticks { height: 1.2em; margin-top: -.6em; }
 .vertical .ui-slider-label-ticks span { display: inline-block; border-top: 1px solid #999; width: 0.7em; margin-bottom: 0.15em; }
+
+.ui-combobox { display: inline-block; margin: 0; margin-right: 1.8em; position: relative; }
+.ui-combobox-input { padding: 0.2em; margin: 0; }
+.ui-combobox-button { position: absolute; width: 1.8em !important; margin: 0; margin-left: -1px; top: 0; bottom: 0; }
+.ui-combobox-button .ui-button-text { padding: 0em; }
+.ui-combobox .ui-autocomplete { max-height: 10em; overflow-y: auto; overflow-x: hidden; }

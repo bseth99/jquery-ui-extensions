@@ -54,7 +54,7 @@
          wrapper = this.uiCombo =
             input.wrap( '<span>' )
                .parent()
-               .addClass( 'ui-combobox ui-front' )
+               .addClass( 'ui-combobox' )
                .insertAfter( select );
 
          input
@@ -63,6 +63,7 @@
              delay: 0,
              minLength: 0,
 
+             appendTo: wrapper,
              source: function(request, response) {
 
                 var matcher = new RegExp( $.ui.autocomplete.escapeRegex(request.term), 'i' );
@@ -128,8 +129,8 @@
 
             open: function ( event, ui ) {
 
-               wrapper.children('.ui-front')
-                  .outerWidth(wrapper.outerWidth()-4);
+               wrapper.children('.ui-autocomplete')
+                  .outerWidth(wrapper.outerWidth(true));
             }
 
           });
@@ -146,7 +147,6 @@
          $( "<button>" )
             .attr( "tabIndex", -1 )
             .attr( "title", "Show All Items" )
-            .text('&nbsp;')
             .insertAfter( input )
             .button({
                icons: {
