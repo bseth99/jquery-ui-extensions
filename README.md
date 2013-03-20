@@ -13,6 +13,9 @@ includes:
 - **LabeledSlider**: Adds tick marks at configurable intervals to the Slider control.  Optional text labels
    can also be passed to the widget.
 
+- **ComboBox**: Enhances the demo provided on the [jQueryUI site](http://jqueryui.com/autocomplete/#combobox) 
+   by adding a value function and some addtional features.
+
 ## Usage
 
 Either download the
