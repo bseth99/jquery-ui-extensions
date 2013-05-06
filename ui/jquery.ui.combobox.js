@@ -71,6 +71,7 @@
 
          $( "<button>" )
             .attr( "tabIndex", -1 )
+            .attr( "type", "button" )
             .insertAfter( input )
             .button({
                icons: {
