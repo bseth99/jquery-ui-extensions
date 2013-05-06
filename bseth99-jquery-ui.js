@@ -1,4 +1,4 @@
-/*! Ben's jQuery UI Extensions - v0.1 - 2013-03-20
+/*! Ben's jQuery UI Extensions - v0.1 - 2013-05-06
 * https://github.com/bseth99/jquery-ui-extensions
 * Includes: jquery.ui.spinner.js, jquery.ui.combobox.js, jquery.ui.labeledslider.js, jquery.ui.slidespinner.js
 * Copyright 2013 Ben Olson; Licensed MIT */
@@ -565,6 +565,7 @@ $.widget( "ui.spinner", {
 
          $( "<button>" )
             .attr( "tabIndex", -1 )
+            .attr( "type", "button" )
             .insertAfter( input )
             .button({
                icons: {
