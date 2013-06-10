@@ -1,4 +1,4 @@
-/*! Ben's jQuery UI Extensions - v0.1 - 2013-05-06
+/*! Ben's jQuery UI Extensions - v0.1.1 - 2013-06-10
 * https://github.com/bseth99/jquery-ui-extensions
 * Includes: jquery.ui.spinner.js, jquery.ui.combobox.js, jquery.ui.labeledslider.js, jquery.ui.slidespinner.js
 * Copyright 2013 Ben Olson; Licensed MIT */
@@ -779,7 +779,7 @@ $.widget( "ui.spinner", {
          for (;i<=cnt;i++) {
             $('<div>').addClass( 'ui-slider-label-ticks' )
                .css( dir, (Math.round( i / cnt * 10000 ) / 100) + '%' )
-               .html( ( dir == 'left' ? '<span></span><br/>' : '<span></span> ' ) + ( labels[i*inr+min] ? labels[i*inr+min] : i*inr+min ) )
+               .html( '<span>'+( labels[i*inr+min] ? labels[i*inr+min] : i*inr+min )+'</span>' )
                .appendTo( $lbl );
          }
 

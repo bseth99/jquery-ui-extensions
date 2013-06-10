@@ -1,4 +1,4 @@
-/*! Ben's jQuery UI Extensions - v0.1 - 2013-05-06
+/*! Ben's jQuery UI Extensions - v0.1.1 - 2013-06-10
 * https://github.com/bseth99/jquery-ui-extensions
 * Includes: jquery.ui.spinner.css, jquery.ui.slidespinner.css, jquery.ui.labeledslider.css, jquery.ui.combobox.css
 * Copyright 2013 Ben Olson; Licensed MIT */
@@ -37,20 +37,21 @@
 .ui-slidespinner input { width: 2.5em; }
 .ui-slidespinner div { position: absolute; font-size: 7pt; }
 .ui-slider-wrapper { position: relative; }
-
 .ui-slider-wrapper .ui-slider-horizontal { width: 100%; }
-.ui-slider-label-ticks { border: 1px solid transparent; position: absolute; text-align: center; white-space: nowrap; font-size: 0.9em; }
+
 .ui-slider-labels { position: absolute; border: 1px solid transparent; }
+.ui-slider-label-ticks { border: 1px solid transparent; position: absolute; white-space: nowrap; }
+.ui-slider-label-ticks span { font-size: 0.9em; min-width: 1.2em; }
 
 .ui-slider-wrapper.horizontal { height: 4.5em; }
-.horizontal .ui-slider-labels { top: 0.7em; margin-top: -0.35em; left: 0.05em; width: 100%; }
-.horizontal .ui-slider-label-ticks { width: 1.2em; margin-left: -.7em; }
-.horizontal .ui-slider-label-ticks span { display: inline-block; border-left: 1px solid #999; height: 0.7em; }
+.horizontal .ui-slider-labels { left: 0; right: 0; top: 0.7em }
+.horizontal .ui-slider-label-ticks { width: 1.2em; height: .8em; text-align: center; border-left: 1px solid #999; }
+.horizontal .ui-slider-label-ticks span { position: relative; display: inline-block; margin-left: -1.2em; top: .8em; }
 
 .ui-slider-wrapper.vertical { width: 4.5em; }
-.vertical .ui-slider-labels { left: 0.7em; top: 0.4em; margin-left: -0.15em; height: 100%; }
-.vertical .ui-slider-label-ticks { height: 1.2em; margin-top: -.6em; }
-.vertical .ui-slider-label-ticks span { display: inline-block; border-top: 1px solid #999; width: 0.7em; margin-bottom: 0.15em; }
+.vertical .ui-slider-labels { top: 1px; bottom: 0; left: 0.7em; }
+.vertical .ui-slider-label-ticks { height: 1.2em; width: 0.8em; border-bottom: 1px solid #999; }
+.vertical .ui-slider-label-ticks span { position: relative; display: inline-block; margin-left: 1em; top: .6em; }
 
 .ui-combobox { display: inline-block; margin: 0; margin-right: 1.8em; position: relative; }
 .ui-combobox-input { padding: 0.2em; margin: 0; }

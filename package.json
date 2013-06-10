@@ -1,27 +1,29 @@
 {
-	"name": "jquery-ui-extensions",
-	"title": "Ben's jQuery UI Extensions",
-	"description": "Customizations and enhancements to the standard jQuery UI library",
-	"version": "0.1",
-	"author": {
-		"name": "Ben Olson",
-		"url": "http://bseth99.github.com/"
-	},
-	"homepage": "https://github.com/bseth99/jquery-ui-extensions",
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/bseth99/jquery-ui-extensions.git"
-	},
-	"bugs": {
-		"url" : "http://github.com/bseth99/jquery-ui-extensions/issues"
-	},
-	"licenses": [
-		{
-			"type": "MIT",
-			"url": "https://github.com/bseth99/jquery-ui-extensions/blob/master/MIT-LICENSE.txt"
-		}
-	],
-	"dependencies": {},
-	"devDependencies": {},
-	"keywords": []
+   "name": "jquery-ui-extensions",
+   "title": "Ben's jQuery UI Extensions",
+   "description": "Customizations and enhancements to the standard jQuery UI library",
+   "version": "0.1.1",
+   "author": {
+      "name": "Ben Olson",
+      "url": "http://bseth99.github.com/"
+   },
+   "homepage": "https://github.com/bseth99/jquery-ui-extensions",
+   "repository": {
+      "type": "git",
+      "url": "git://github.com/bseth99/jquery-ui-extensions.git"
+   },
+   "bugs": {
+      "url" : "http://github.com/bseth99/jquery-ui-extensions/issues"
+   },
+   "licenses": [
+      {
+         "type": "MIT",
+         "url": "https://github.com/bseth99/jquery-ui-extensions/blob/master/MIT-LICENSE.txt"
+      }
+   ],
+   "dependencies": {},
+   "devDependencies": {
+    "grunt": "~0.4.1"
+   },
+   "keywords": []
 }
