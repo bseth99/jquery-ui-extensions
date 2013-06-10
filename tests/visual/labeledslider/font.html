@@ -27,9 +27,9 @@
    <style>
       body { font-size: 62.5%; }
       .wrapper.horizontal { width: 400px; margin: auto; }
-      .wrapper.vertical { width: 400px; height: 250px; margin: auto; }
-      .wrapper.vertical > div { display: inline-block; }
-      .wrapper.vertical > div .ui-slider { height: 250px; }
+      .wrapper.vertical { position: relative; width: 400px; height: 250px; margin: auto; }
+      .wrapper.vertical > div { position: absolute; top: 0; }
+      .wrapper.vertical .ui-slider { height: 250px; }
 
       #size1-h, #size1-v { font-size: 8pt; }
       #size2-h, #size2-v { font-size: 12pt; }
@@ -47,9 +47,9 @@
 </div>
 
 <div class="wrapper vertical ">
-   <div id="size1-v"></div>
-   <div id="size2-v"></div>
-   <div id="size3-v"></div>
+   <div style="left: 0;"><div id="size1-v"></div></div>
+   <div style="left: 33%;"><div id="size2-v"></div></div>
+   <div style="left: 66%;"><div id="size3-v"></div></div>
 </div>
 
 </body>

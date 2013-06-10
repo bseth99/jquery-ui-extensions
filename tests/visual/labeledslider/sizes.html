@@ -29,8 +29,8 @@
    <style>
       body { font-size: 62.5%; }
       .wrapper.horizontal { width: 400px; margin: auto; }
-      .wrapper.vertical { width: 400px; height: 250px; margin: auto; }
-      .wrapper.vertical > div { display: inline-block; }
+      .wrapper.vertical { position: relative; width: 400px; height: 250px; margin: auto; }
+      .wrapper.vertical > div { position: absolute; top: 0; }
 
       #size1-h { width: 100px; }
       #size2-h { width: 200px; }
@@ -54,10 +54,10 @@
 </div>
 
 <div class="wrapper vertical ">
-   <div id="sized-v"></div>
-   <div id="size1-v"></div>
-   <div id="size2-v"></div>
-   <div id="size3-v"></div>
+   <div style="left: 0;"><div id="sized-v"></div></div>
+   <div style="left: 25%;"><div id="size1-v"></div></div>
+   <div style="left: 50%;"><div id="size2-v"></div></div>
+   <div style="left: 75%;"><div id="size3-v"></div></div>
 </div>
 
 </body>
