@@ -23,7 +23,7 @@
    ],
    "dependencies": {},
    "devDependencies": {
-    "grunt": "~0.4.1"
+    "grunt": "0.3"
    },
    "keywords": []
 }
