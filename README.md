@@ -65,6 +65,7 @@ button remaining in the waiting state.
          })
          
 or
+
       $('#save')
          .waitbutton()
          .on( 'buttonwaiting',  function ( e, ui ) {
@@ -75,7 +76,7 @@ or
          })    
       
 The ```done()``` callback takes up to two option arguments that control the new label and state of the button.
-Review the demo for examples of each variation.
+Review the [demo](http://bseth99.github.io/jquery-ui-extensions/tests/visual/waitbutton/base.html) for examples of each variation.
 
 
 ## Demo
