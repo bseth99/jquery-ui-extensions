@@ -526,6 +526,8 @@ $.widget( "ui.spinner", {
 
    $.widget( "ui.combobox", {
 
+      version: "1.0.1",
+
       widgetEventPrefix: "combobox",
 
       uiCombo: null,
@@ -725,6 +727,8 @@ $.widget( "ui.spinner", {
 
     $.widget( "ui.labeledslider", $.ui.slider, {
 
+      version: "1.0.1",
+
       options: {
          tickInterval: 0,
          tickLabels: null
@@ -834,89 +838,92 @@ $.widget( "ui.spinner", {
 (function( $ ) {
 
 $.widget( "ui.slidespinner", $.ui.spinner, {
-	widgetEventPrefix: "slidespinner",
 
-	options: {
-		alignment: 'vertical',
-		min: 0,
-		max: 100,
-	},
+   version: "1.0.1",
 
-	_create: function() {
+   widgetEventPrefix: "slidespinner",
 
-		this.options.min = this.options.min || 0;
-		this.options.max = this.options.max || 100;
+   options: {
+      alignment: 'vertical',
+      min: 0,
+      max: 100,
+   },
 
-		if ( this.options.alignment != 'vertical' &&
-				this.options.alignment != 'horizontal' ) {
-			this.options.alignment = 'vertical';
-		}
+   _create: function() {
 
-		this._super();
+      this.options.min = this.options.min || 0;
+      this.options.max = this.options.max || 100;
 
-		this._value( this.element.val() );
-		this.uiSlider.slider( 'value', this.value() | 0 );
-	},
+      if ( this.options.alignment != 'vertical' &&
+            this.options.alignment != 'horizontal' ) {
+         this.options.alignment = 'vertical';
+      }
 
-	_draw: function( ) {
+      this._super();
 
-		var self = this,
-			 options = this.options;
+      this._value( this.element.val() );
+      this.uiSlider.slider( 'value', this.value() | 0 );
+   },
 
-		this._super();
+   _draw: function( ) {
 
-		this.uiWrapper =
-			this.uiSpinner
-				.wrap( '<span>' )
-				.parent()
-				.addClass( 'ui-slidespinner' );
+      var self = this,
+          options = this.options;
 
-		this.uiSlider =
-			$('<div>')
-				.appendTo( this.uiWrapper )
-				.slider({
-						orientation: options.alignment,
-						min: options.min,
-						max: options.max,
-						slide: function (e, ui) {
-							self._value( ui.value );
-						}
-					});
+      this._super();
 
-		if ( options.alignment == 'vertical' ) {
-			this.uiSlider
-				.position({ my: 'left+5 top+5', at: 'right top', of: this.uiSpinner })
-				.css( 'height', this.uiSpinner.outerHeight(true) - 10 );
-		} else {
-			this.uiSlider
-				.position({ my: 'left+5 top+5', at: 'left bottom', of: this.uiSpinner })
-				.css( 'width', this.uiSpinner.outerWidth(true) - 10 );
-		}
-	},
+      this.uiWrapper =
+         this.uiSpinner
+            .wrap( '<span>' )
+            .parent()
+            .addClass( 'ui-slidespinner' );
 
-	_spin: function( step, event ) {
+      this.uiSlider =
+         $('<div>')
+            .appendTo( this.uiWrapper )
+            .slider({
+                  orientation: options.alignment,
+                  min: options.min,
+                  max: options.max,
+                  slide: function (e, ui) {
+                     self._value( ui.value );
+                  }
+               });
 
-		this._super( step, event );
+      if ( options.alignment == 'vertical' ) {
+         this.uiSlider
+            .position({ my: 'left+5 top+5', at: 'right top', of: this.uiSpinner })
+            .css( 'height', this.uiSpinner.outerHeight(true) - 10 );
+      } else {
+         this.uiSlider
+            .position({ my: 'left+5 top+5', at: 'left bottom', of: this.uiSpinner })
+            .css( 'width', this.uiSpinner.outerWidth(true) - 10 );
+      }
+   },
 
-		this.uiSlider.slider( 'value', this.value() | 0 );
-	},
+   _spin: function( step, event ) {
 
-	_stop: function( event ) {
+      this._super( step, event );
 
-		if ( event.type == 'keyup'  ) {
-			this.uiSlider.slider( 'value', this.value() | 0 );
-		}
+      this.uiSlider.slider( 'value', this.value() | 0 );
+   },
 
-		this._super( event );
+   _stop: function( event ) {
+
+      if ( event.type == 'keyup'  ) {
+         this.uiSlider.slider( 'value', this.value() | 0 );
+      }
+
+      this._super( event );
   },
 
-	_destroy: function( ) {
+   _destroy: function( ) {
 
-		this.uiSlider.remove();
-		this.uiSpinner.unwrap();
+      this.uiSlider.remove();
+      this.uiSpinner.unwrap();
 
-		this._super();
-	}
+      this._super();
+   }
 
 });
 
