@@ -137,6 +137,11 @@ grunt.initConfig({
          files: [
             {expand: true, flatten: true, src: ['themes/base/images/*'], dest: 'dist/images/', filter: 'isFile'}
          ]
+      },
+      full: {
+         files: [
+            {expand: true, flatten: true, src: ['ui/*'], dest: 'dist/full/', filter: 'isFile'}
+         ]
       }
    },
    replace: {
@@ -151,6 +156,6 @@ grunt.initConfig({
    }
 });
 
-grunt.registerTask( "default", [ "concat", "uglify", "cssmin", "replace", "copy" ] );
+grunt.registerTask( "default", [ "concat", "uglify", "cssmin", "copy", "replace" ] );
 
 };
