@@ -16,7 +16,7 @@ function modifier( fn ) {
 }
 
 $.widget( "ui.spinner", {
-	version: "@VERSION",
+	version: "1.0.1",
 	defaultElement: "<input>",
 	widgetEventPrefix: "spin",
 	options: {
@@ -925,7 +925,7 @@ $.widget( "ui.slidespinner", $.ui.spinner, {
 (function ( $, undefined ) {
     $.widget( "ui.waitbutton", $.ui.button, {
 
-       version: "@VERSION",
+       version: "1.0.1",
 
        // Keep button prefix instead of waitbutton
        // otherwise waiting event is waitbuttonwaiting

@@ -1,5 +1,6 @@
 /*!
  * Copyright (c) 2012 Ben Olson (https://github.com/bseth99/jquery-ui-extensions)
+ * jQuery UI LabeledSlider @VERSION
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -33,6 +34,8 @@
 
 
     $.widget( "ui.labeledslider", $.ui.slider, {
+
+      version: "@VERSION",
 
       options: {
          tickInterval: 0,
