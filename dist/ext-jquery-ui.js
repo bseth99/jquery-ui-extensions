@@ -1,8 +1,7 @@
-/*! Ben's jQuery UI Extensions - v0.1.1 - 2013-06-10
+/*! Ben's jQuery UI Extensions - v1.0.1 - 2013-07-05
 * https://github.com/bseth99/jquery-ui-extensions
-* Includes: jquery.ui.spinner.js, jquery.ui.combobox.js, jquery.ui.labeledslider.js, jquery.ui.slidespinner.js
+* Includes: jquery.ui.spinner.js, jquery.ui.combobox.js, jquery.ui.labeledslider.js, jquery.ui.slidespinner.js, jquery.ui.waitbutton.js
 * Copyright 2013 Ben Olson; Licensed MIT */
-
 (function( $ ) {
 
 function modifier( fn ) {
@@ -922,3 +921,123 @@ $.widget( "ui.slidespinner", $.ui.spinner, {
 });
 
 }( jQuery ) );
+
+(function ( $, undefined ) {
+    $.widget( "ui.waitbutton", $.ui.button, {
+
+       version: "@VERSION",
+
+       // Keep button prefix instead of waitbutton
+       // otherwise waiting event is waitbuttonwaiting
+       // which is weird.
+       widgetEventPrefix: "button",
+
+       options: {
+          waitLabel: null,
+          waitIcon: 'ui-icon-waiting'
+       },
+
+       _saved: null,
+
+       _create: function() {
+
+          this._super();
+
+          this.element.addClass('ui-wait-button');
+          this._saved = {};
+
+          this._saveOptions();
+
+       },
+
+       _init: function() {
+
+          this._super();
+
+          this.disable();
+          this._toggleWaitState();
+          this._initWaitClick();
+
+       },
+
+       _initWaitClick: function() {
+
+          /**
+          *   channel clicks through waiting event instead
+          *   base button does not listen to click -
+          *   it listens to mousedown/up.  This prevents any external
+          *   listeners from firing when we want to use the callback
+          *   provided by the waiting event.
+          */
+          this.element.off( 'click' );
+
+          this.element.one( 'click', $.proxy( this, '_toggleWaitState' ) );
+       },
+
+       _toggleWaitState: function() {
+
+          var event;
+
+          if ( this.options.disabled ) {
+
+             this._setOptions({
+                disabled: false,
+                label: this._saved.label,
+                icons: { primary: this._saved.icon }
+             });
+
+          } else {
+
+             this._saveOptions();
+
+             this._setOptions({
+                disabled: true,
+                label: this.options.waitLabel || this.options.label,
+                icons: { primary: this.options.waitIcon }
+             });
+
+             event = arguments[0] || (new jQuery.Event( 'click', { target: this.element } ) );
+
+             /* channel clicks through waiting event instead */
+             event.preventDefault();
+             event.stopPropagation();
+             event.stopImmediatePropagation();
+
+             this._trigger( 'waiting', event, { done: $.proxy( this, '_waitComplete' ) } );
+          }
+
+       },
+
+       _waitComplete: function() {
+
+          // Juggle arguments
+          var label = (arguments[0] && typeof( arguments[0] ) == 'string' ? arguments[0] : null),
+              enable = (label ? arguments[1] : arguments[0]);
+
+          // Determine next state - either return to start or
+          // use a different label and/or leave in disabled state
+
+          if ( typeof( enable ) == 'undefined' ) enable = true;
+
+          this._toggleWaitState();
+          if ( enable ) {
+             this._initWaitClick();
+          } else {
+             this.disable();
+          }
+
+          if ( label ) {
+             this._setOption( 'label', label );
+          }
+       },
+
+       _saveOptions: function() {
+
+          this._saved.icon = this.options.icons.primary;
+          this._saved.label = this.options.label;
+
+       }
+
+    });
+
+})(jQuery);

@@ -4,12 +4,12 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-   <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css">
+   <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
 
    <title>SlideSpinner Extension</title>
 
    <script src="http://code.jquery.com/jquery.js"></script>
-   <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+   <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 
    <link rel="stylesheet" href="../../../themes/base/jquery.ui.spinner.css">
    <link rel="stylesheet" href="../../../themes/base/jquery.ui.slidespinner.css">
@@ -21,6 +21,8 @@
    * { font-family: sans-serif,arial; }
 
    .ui-widget input { font-size: 12pt; }
+
+   #main { width: 900px; margin: auto; }
 </style>
 
 <script>
@@ -54,9 +56,15 @@
 
 </head>
 <body>
+<a href="https://github.com/bseth99/jquery-ui-extensions"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
 
-<h4>SlideSpinner Test</h4>
+<div id="main">
+<h3>SlideSpinner Test</h3>
 
+<div>
+   <a href="../index.html">&lt; Back to widget demos</a>
+</div>
+<br/>
 <div>
 Add starting values on inputs.  Change min/max to -100 - 100.  Check negative values work.
 </div>
@@ -71,5 +79,6 @@ Add starting values on inputs.  Change min/max to -100 - 100.  Check negative va
 <h5>Slider Spinner - Horizontal</h5>
 <div id="horizontal"><input value="-25" /></div>
 
+</div>
 </body>
 </html>

@@ -1,0 +1,5 @@
+/*! Ben's jQuery UI Extensions - v1.0.1 - 2013-07-05
+* https://github.com/bseth99/jquery-ui-extensions
+* Copyright 2013 Ben Olson; Licensed MIT */
+
+.ui-slidespinner{position:relative;display:inline-block}.ui-slidespinner .ui-spinner-vertical{margin-right:20px}.ui-slidespinner .ui-spinner-horizontal{margin-bottom:20px}.ui-slidespinner input{width:2.5em}.ui-slidespinner div{position:absolute;font-size:7pt}

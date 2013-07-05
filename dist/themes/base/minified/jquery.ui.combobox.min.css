@@ -1,0 +1,5 @@
+/*! Ben's jQuery UI Extensions - v1.0.1 - 2013-07-05
+* https://github.com/bseth99/jquery-ui-extensions
+* Copyright 2013 Ben Olson; Licensed MIT */
+
+.ui-combobox{display:inline-block;margin:0;margin-right:1.8em;position:relative}.ui-combobox-input{padding:.2em;margin:0}.ui-combobox-button{position:absolute;width:1.8em!important;margin:0;margin-left:-1px;top:0;bottom:0}.ui-combobox-button .ui-button-text{padding:0}.ui-combobox .ui-autocomplete{max-height:10em;overflow-y:auto;overflow-x:hidden}
