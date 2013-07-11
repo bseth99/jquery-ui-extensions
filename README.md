@@ -19,6 +19,9 @@ includes:
 - **WaitButton**: Extends the default jQueryUI Button widget by adding a spinner and disabling the
    button when its clicked.  Prevents multiple clicking and provides visual feedback that something
    is happening.
+   
+- **Scrollable**: Enables monitoring whether an element is scrolled into the visible viewport.  Includes support
+   to determine where the element is relative to the viewport and to scroll the elemement into view.
 
 ## Usage
 
@@ -48,7 +51,7 @@ Neither are required to use the widget.  When omitted, the label will remain the
 the class used for the primary icon will be the default ui-icon-waiting class which expects a GIF named 
 waitbutton-loading.gif to be present in a images folder relative to the CSS file.  You can use the [one I have
 created](https://raw.github.com/bseth99/jquery-ui-extensions/master/dist/images/waitbutton-loading.gif)
-or design your own.  Just be aware that the ui-icon class on the button widget alot 16x16 pixels for
+or design your own.  Just be aware that the ui-icon class on the button widget a lot 16x16 pixels for
 the icon.
 
 The widget triggers a ```waiting``` event when a user clicks the button.  An object is passed to the handler with
@@ -77,6 +80,67 @@ or
       
 The ```done()``` callback takes up to two option arguments that control the new label and state of the button.
 Review the [demo](http://bseth99.github.io/jquery-ui-extensions/tests/visual/waitbutton/base.html) for examples of each variation.
+
+
+### Scrollable
+
+This widget enables monitoring, querying, or changing the scroll position of an element relative to a scrolling 
+container.  A scrolling element is either the window or an element with the ````overflow```` style set to
+````auto```` or ````scroll````
+
+      $('#myelement').scrollable()
+      
+This will add myelement to the list of elements being monitored for their scroll position.  If the element scrolls into 
+the visible viewport defined by its container, then an ````in```` event is triggered.  When it scrolls out, an
+````out```` event is triggered.  Each event is triggered only one time when an element moves in and out of view.
+
+#### Options
+
+````direction```` - Determines if monitoring/positioning will occur for either ````both````, ````vertical```` only, or
+````horizontal```` only.  Defaults to ````both````.  
+
+      $('#myelement').scrollable({ direction: 'vertical' });
+    
+
+````offset```` - Adjust the logical size of the container such that the detection.  Accepts pixels and percentages.
+Positive value shrink the box while negative expand it.
+
+      $('#myelement').scrollable({ offset: { left: '40%', top: '40%' } });
+      
+See the [example](http://bseth99.github.io/jquery-ui-extensions/tests/visual/scrollable/offset.html) to see how it works.      
+
+#### Methods
+
+````position```` - returns an object hash describing the state of the element relative to the scrolling container's
+visible viewport:
+
+- ````container```` [jQuery] - The scrolling parent container of the target element
+- ````element```` [jQuery] - The target element
+- ````position```` [Object] - A hash of dimensions and information regarding the state of the element relative to
+the container.
+   - ````container```` [Object] - The normalized (after applying ````offset````) left/right/top/bottom points of
+the container element.
+   - ````element```` [Object] - The left/right/top/bottom points of the target element.
+   - ````inside```` [Boolean] - Is the element inside the defined visible viewport.
+   - ````outside```` [Boolean] - Is the element outside the defined visible viewport.
+   - ````left```` [Boolean] - Is the element left of the defined visible viewport.
+   - ````right```` [Boolean] - Is the element right of the defined visible viewport.
+   - ````top```` [Boolean] - Is the element above the defined visible viewport.
+   - ````bottom```` [Boolean] - Is the element below the defined visible viewport.
+
+````goto```` - Scrolls the element into the visible viewport.  Uses jQuery.animate to smooth the transistion.
+Takes an optional config object with the following options:
+
+- ````onlyOutside```` - Should the element be scrolled if its already in the visible area.
+- ````my```` - Determines the final positioning of the target element relative to the container.
+- ````at```` - Determines where the element should be positioned relative to the container.  
+See the documentation on [jQuery UI Position](http://api.jqueryui.com/position/) for the format of ````my```` and ````at````.
+- ````duration```` - Same options as [jQuery.animate()](http://api.jquery.com/animate/)
+- ````easing```` - Accepts all the easing options available in [jQuery UI](http://jqueryui.com/effect/#easing)
+- ````complete```` - callback function to execute once animation completes
+
+See the [example](http://bseth99.github.io/jquery-ui-extensions/tests/visual/scrollable/goto.html) to experiment
+with the positioning options.
 
 
 ## Demo
