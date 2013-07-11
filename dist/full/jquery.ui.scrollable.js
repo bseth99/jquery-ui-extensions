@@ -1,6 +1,6 @@
 /*!
  * Copyright (c) 2013 Ben Olson (https://github.com/bseth99/jquery-ui-extensions)
- * jQuery UI Scrollable 1.0.1
+ * jQuery UI Scrollable 1.0.2
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
