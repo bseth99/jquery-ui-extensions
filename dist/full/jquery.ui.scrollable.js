@@ -146,6 +146,8 @@
 
    $.widget('ui.scrollable', {
 
+      version: "1.0.2",
+
       widgetEventPrefix: 'scroll',
 
       options: {
