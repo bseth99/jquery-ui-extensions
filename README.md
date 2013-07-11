@@ -102,7 +102,8 @@ the visible viewport defined by its container, then an ````in```` event is trigg
       $('#myelement').scrollable({ direction: 'vertical' });
     
 
-````offset```` - Adjust the logical size of the container such that the detection.  Accepts pixels and percentages.
+````offset```` - Adjust the logical size of the container such that the detection compares to a different
+sized box than the physical one displayed in the browser.  Accepts pixels and percentages.
 Positive value shrink the box while negative expand it.
 
       $('#myelement').scrollable({ offset: { left: '40%', top: '40%' } });
@@ -141,6 +142,31 @@ See the documentation on [jQuery UI Position](http://api.jqueryui.com/position/)
 
 See the [example](http://bseth99.github.io/jquery-ui-extensions/tests/visual/scrollable/goto.html) to experiment
 with the positioning options.
+
+#### Events
+
+````in```` - triggered when the element scrolls into the defined viewport.
+
+      $('#myelement').scrollable({ 
+         in: function ( e, ui ) {
+         
+            ...
+            
+         }
+      });
+      
+or 
+      
+      $('#myelement').on('scrollin', function ( e, ui ) {
+
+            ...
+            
+      });
+
+The ````ui```` object contains the same object hash that is returned by the ````position```` method.
+
+
+````out```` - triggered when the element scrolls out of the defined viewport.  Same parameters and usage as ````in````.
 
 
 ## Demo
