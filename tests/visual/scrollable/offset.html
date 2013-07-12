@@ -64,7 +64,7 @@ $(function () {
             left: $('#bounds').width() * 0.5,
             top: $('#bounds').height() * 0.5
          })
-      .scrollable({ offset: { left: '40%', top: '40%' } })
+      .scrollable({ offset: { x: '40%', y: '40%' } })
       .on('scrollout', function ( e, ui) {
 
             $.each( ['top', 'right', 'bottom', 'left'], function ( val, prop ) {

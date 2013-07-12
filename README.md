@@ -103,10 +103,16 @@ the visible viewport defined by its container, then an ````in```` event is trigg
     
 
 ````offset```` - Adjust the logical size of the container such that the detection compares to a different
-sized box than the physical one displayed in the browser.  Accepts pixels and percentages.
-Positive value shrink the box while negative expand it.
+sized box than the physical one displayed in the browser.  Accepts pixels and percentages.  Accepts ```left```,
+````top````, ````right````, and ````bottom```` to set each side individually or ````vertical````/````y```` and 
+````horizonal````/````x```` which will split the value evenly between the top/bottom and left/right, respectively.
+Any missing values will default to zero.  Positive value shrink the box while negative expand it.
 
+      // Adjust the bounds of the top/left side of the detection zone
       $('#myelement').scrollable({ offset: { left: '40%', top: '40%' } });
+      
+      // Adjust the bounds of the left/right only (20% for each) and leave top/bottom alone
+      $('#myelement').scrollable({ offset: { x: '40%' } });      
       
 See the [example](http://bseth99.github.io/jquery-ui-extensions/tests/visual/scrollable/offset.html) to see how it works.      
 
