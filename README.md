@@ -115,19 +115,15 @@ See the [example](http://bseth99.github.io/jquery-ui-extensions/tests/visual/scr
 ````position```` - returns an object hash describing the state of the element relative to the scrolling container's
 visible viewport:
 
-- ````container```` [jQuery] - The scrolling parent container of the target element
-- ````element```` [jQuery] - The target element
-- ````position```` [Object] - A hash of dimensions and information regarding the state of the element relative to
-the container.
-   - ````container```` [Object] - The normalized (after applying ````offset````) left/right/top/bottom points of
+- ````container```` [Object] - The normalized (after applying ````offset````) left/right/top/bottom points of
 the container element.
-   - ````element```` [Object] - The left/right/top/bottom points of the target element.
-   - ````inside```` [Boolean] - Is the element inside the defined visible viewport.
-   - ````outside```` [Boolean] - Is the element outside the defined visible viewport.
-   - ````left```` [Boolean] - Is the element left of the defined visible viewport.
-   - ````right```` [Boolean] - Is the element right of the defined visible viewport.
-   - ````top```` [Boolean] - Is the element above the defined visible viewport.
-   - ````bottom```` [Boolean] - Is the element below the defined visible viewport.
+- ````element```` [Object] - The left/right/top/bottom points of the target element.
+- ````inside```` [Boolean] - Is the element inside the defined visible viewport.
+- ````outside```` [Boolean] - Is the element outside the defined visible viewport.
+- ````left```` [Boolean] - Is the element left of the defined visible viewport.
+- ````right```` [Boolean] - Is the element right of the defined visible viewport.
+- ````top```` [Boolean] - Is the element above the defined visible viewport.
+- ````bottom```` [Boolean] - Is the element below the defined visible viewport.
 
 ````goto```` - Scrolls the element into the visible viewport.  Uses jQuery.animate to smooth the transistion.
 Takes an optional config object with the following options:
@@ -163,7 +159,13 @@ or
             
       });
 
-The ````ui```` object contains the same object hash that is returned by the ````position```` method.
+````e```` is the original scroll event.
+
+The ````ui```` object contains the following keys:
+
+- ````container```` [jQuery] - The closest scrolling ancestor container of the target element
+- ````element```` [jQuery] - The target element
+- ````position```` [Object] - The same object hash that is returned by the ````position```` method.
 
 
 ````out```` - triggered when the element scrolls out of the defined viewport.  Same parameters and usage as ````in````.
