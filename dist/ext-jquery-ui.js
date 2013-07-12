@@ -1,4 +1,4 @@
-/*! Ben's jQuery UI Extensions - v1.0.2 - 2013-07-11
+/*! Ben's jQuery UI Extensions - v1.0.2 - 2013-07-12
 * https://github.com/bseth99/jquery-ui-extensions
 * Includes: jquery.ui.spinner.js, jquery.ui.combobox.js, jquery.ui.labeledslider.js, jquery.ui.scrollable.js, jquery.ui.slidespinner.js, jquery.ui.waitbutton.js
 * Copyright 2013 Ben Olson; Licensed MIT */
@@ -968,7 +968,7 @@ $.widget( "ui.spinner", {
 
       _create: function () {
 
-         this.options.offset = this.options.offset || { top: 0, left: 0 };
+         this.options.offset = this.options.offset || { top: 0, left: 0, bottom: 0, right: 0 };
       },
 
       _init: function () {
@@ -1014,18 +1014,32 @@ $.widget( "ui.spinner", {
                   left: this.container.scrollLeft()
                },
              elem = this.element.position(),
-             offsets = [this.options.offset.left, this.options.offset.top],
+             ofs = $.extend({}, this.options.offset),
              width = this.container.width(),
              height = this.container.height(),
-             ret;
+             otmp, ret;
 
          // normalize
-         offsets = getOffsets( offsets, width, height );
+         if ( ofs.vertical || ofs.y ) {
+            otmp = getOffsets( [0, ofs.vertical || ofs.y], width, height );
+            ofs.top = ofs.bottom = otmp[1] / 2;
+         }
 
-         doc.right = doc.left + width - offsets[0] / 2;
-         doc.bottom = doc.top + height - offsets[1] / 2;
-         doc.left += offsets[0] / 2;
-         doc.top += offsets[1] / 2;
+         if ( ofs.horizontal || ofs.x ) {
+            otmp = getOffsets( [ofs.horizontal || ofs.x, 0], width, height );
+            ofs.left = ofs.right = otmp[0] / 2;
+         }
+
+         otmp = getOffsets( [ofs.left || 0, ofs.top || 0], width, height );
+         ofs.left = otmp[0]; ofs.top = otmp[1];
+
+         otmp = getOffsets( [ofs.right || 0, ofs.bottom || 0], width, height );
+         ofs.right = otmp[0]; ofs.bottom = otmp[1];
+
+         doc.right = doc.left + width - ofs.right;
+         doc.bottom = doc.top + height - ofs.bottom;
+         doc.left += ofs.left;
+         doc.top += ofs.top;
 
          elem.right = elem.left + this.element.width();
          elem.bottom = elem.top + this.element.height();
