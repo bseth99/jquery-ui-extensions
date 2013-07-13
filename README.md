@@ -176,6 +176,13 @@ The ````ui```` object contains the following keys:
 
 ````out```` - triggered when the element scrolls out of the defined viewport.  Same parameters and usage as ````in````.
 
+#### Credits
+
+Inspiration and some bit of code are from the following other scroll related projects:
+
+- [github/litera] (https://github.com/litera/jquery-scrollintoview)
+- [github/balupton] (https://github.com/balupton/jquery-scrollto)
+- [github/flesler] (https://github.com/flesler/jquery.scrollTo)
 
 ## Demo
 

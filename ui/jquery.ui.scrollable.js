@@ -261,8 +261,8 @@
              position = this.position(),
              targetWidth = this.container.width(),
              targetHeight = this.container.height(),
-             elemWidth = this.element.outerWidth(),
-             elemHeight = this.element.outerHeight(),
+             elemWidth = this.element.outerWidth(true),
+             elemHeight = this.element.outerHeight(true),
              dir = this.options.direction,
              target = (this.container[0] === window ? $('html') : this.container),
              scroll, atOffset, myOffset;
@@ -350,10 +350,10 @@
 
             scroll = {};
 
-            if ( dir == 'both' || dir == 'vertical' )
+            if ( dir == 'both' || dir == 'horizontal' )
                scroll.scrollLeft = round(position.element.left)+'px';
 
-            if ( dir == 'both' || dir == 'horizontal' )
+            if ( dir == 'both' || dir == 'vertical' )
                scroll.scrollTop = round(position.element.top)+'px';
 
             target
