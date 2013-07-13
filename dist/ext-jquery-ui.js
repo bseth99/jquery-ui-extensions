@@ -1,4 +1,4 @@
-/*! Ben's jQuery UI Extensions - v1.0.2 - 2013-07-12
+/*! Ben's jQuery UI Extensions - v1.0.3 - 2013-07-13
 * https://github.com/bseth99/jquery-ui-extensions
 * Includes: jquery.ui.spinner.js, jquery.ui.combobox.js, jquery.ui.labeledslider.js, jquery.ui.scrollable.js, jquery.ui.slidespinner.js, jquery.ui.waitbutton.js
 * Copyright 2013 Ben Olson; Licensed MIT */
@@ -16,7 +16,7 @@ function modifier( fn ) {
 }
 
 $.widget( "ui.spinner", {
-	version: "1.0.2",
+	version: "1.0.3",
 	defaultElement: "<input>",
 	widgetEventPrefix: "spin",
 	options: {
@@ -526,7 +526,7 @@ $.widget( "ui.spinner", {
 
    $.widget( "ui.combobox", {
 
-      version: "1.0.2",
+      version: "1.0.3",
 
       widgetEventPrefix: "combobox",
 
@@ -727,7 +727,7 @@ $.widget( "ui.spinner", {
 
     $.widget( "ui.labeledslider", $.ui.slider, {
 
-      version: "1.0.2",
+      version: "1.0.3",
 
       options: {
          tickInterval: 0,
@@ -953,7 +953,7 @@ $.widget( "ui.spinner", {
 
    $.widget('ui.scrollable', {
 
-      version: "1.0.2",
+      version: "1.0.3",
 
       widgetEventPrefix: 'scroll',
 
@@ -1068,8 +1068,8 @@ $.widget( "ui.spinner", {
              position = this.position(),
              targetWidth = this.container.width(),
              targetHeight = this.container.height(),
-             elemWidth = this.element.outerWidth(),
-             elemHeight = this.element.outerHeight(),
+             elemWidth = this.element.outerWidth(true),
+             elemHeight = this.element.outerHeight(true),
              dir = this.options.direction,
              target = (this.container[0] === window ? $('html') : this.container),
              scroll, atOffset, myOffset;
@@ -1157,10 +1157,10 @@ $.widget( "ui.spinner", {
 
             scroll = {};
 
-            if ( dir == 'both' || dir == 'vertical' )
+            if ( dir == 'both' || dir == 'horizontal' )
                scroll.scrollLeft = round(position.element.left)+'px';
 
-            if ( dir == 'both' || dir == 'horizontal' )
+            if ( dir == 'both' || dir == 'vertical' )
                scroll.scrollTop = round(position.element.top)+'px';
 
             target
@@ -1270,7 +1270,7 @@ $.widget( "ui.spinner", {
 
 $.widget( "ui.slidespinner", $.ui.spinner, {
 
-   version: "1.0.2",
+   version: "1.0.3",
 
    widgetEventPrefix: "slidespinner",
 
@@ -1363,7 +1363,7 @@ $.widget( "ui.slidespinner", $.ui.spinner, {
 (function ( $, undefined ) {
     $.widget( "ui.waitbutton", $.ui.button, {
 
-       version: "1.0.2",
+       version: "1.0.3",
 
        // Keep button prefix instead of waitbutton
        // otherwise waiting event is waitbuttonwaiting
