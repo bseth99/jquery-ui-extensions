@@ -27,6 +27,13 @@
 
       $('select').combobox();
 
+      $('#clearall')
+         .button()
+         .click(function () {
+               $('#state1').combobox('value', null);
+               $('#state2').combobox('value', null);
+            });
+
       $('#set1')
          .button()
          .click(function () {
@@ -72,6 +79,7 @@
 Test getting/setting combox value
 </div>
 <br/>
+Clear All: <button id="clearall">Click to Clear Values</button>
 
 <h5>Value/Text Options</h5>
 Set: <button id="set1">Click to Set to New York</button>
