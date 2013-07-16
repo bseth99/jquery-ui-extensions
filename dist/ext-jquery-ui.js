@@ -1,4 +1,4 @@
-/*! Ben's jQuery UI Extensions - v1.0.3 - 2013-07-15
+/*! Ben's jQuery UI Extensions - v1.0.3 - 2013-07-16
 * https://github.com/bseth99/jquery-ui-extensions
 * Includes: jquery.ui.spinner.js, jquery.ui.combobox.js, jquery.ui.labeledslider.js, jquery.ui.slidespinner.js, jquery.ui.waitbutton.js
 * Copyright 2013 Ben Olson; Licensed MIT */
@@ -703,8 +703,12 @@ $.widget( "ui.spinner", {
                }
             });
 
-         if ( valid )
+         if ( valid ) {
             this.uiInput.val(select.children(':selected').text());
+         } else {
+            this.uiInput.val( "" );
+            this.element.prop('selectedIndex', -1);
+         }
 
       },
 
