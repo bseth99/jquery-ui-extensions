@@ -20,7 +20,7 @@ includes:
    button when its clicked.  Prevents multiple clicking and provides visual feedback that something
    is happening.
    
-- **Scrollable**: Moved to [bseth/jquery-ui-scrollable](https://github.com/bseth/jquery-ui-scrollable)
+- **Scrollable**: Moved to [bseth99/jquery-ui-scrollable](https://github.com/bseth99/jquery-ui-scrollable)
 
 ## Usage
 
