@@ -149,7 +149,7 @@
                    // remove invalid value, as it didn't match anything
                    $el.val( "" );
                    this.element.prop('selectedIndex', -1);
-                   return false;
+                   //return false;
 
                 }
             }
