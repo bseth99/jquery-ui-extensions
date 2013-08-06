@@ -27,7 +27,11 @@
 
       $('#create').click(function () {
 
-            $('select').combobox();
+            $('select').combobox({
+               create: function (evt, ui) {
+                  console.log(ui);
+               }
+            });
 
          });
 

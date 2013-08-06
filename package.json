@@ -2,7 +2,7 @@
    "name": "jquery-ui-extensions",
    "title": "Ben's jQuery UI Extensions",
    "description": "Customizations and enhancements to the standard jQuery UI library",
-   "version": "1.0.4",
+   "version": "1.0.5",
    "author": {
       "name": "Ben Olson",
       "url": "http://bseth99.github.com/"

@@ -228,6 +228,15 @@
 
       widget: function () {
          return this.uiCombo;
+      },
+
+      _getCreateEventData: function() {
+
+         return {
+            select: this.element,
+            combo: this.uiCombo,
+            input: this.uiInput
+         };
       }
 
     });
