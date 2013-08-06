@@ -1,6 +1,6 @@
 /*!
  * Copyright (c) 2013 Ben Olson (https://github.com/bseth99/jquery-ui-extensions)
- * jQuery UI WaitButton 1.0.4
+ * jQuery UI WaitButton 1.0.5
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -31,7 +31,7 @@
  (function ( $, undefined ) {
     $.widget( "ui.waitbutton", $.ui.button, {
 
-       version: "1.0.4",
+       version: "1.0.5",
 
        // Keep button prefix instead of waitbutton
        // otherwise waiting event is waitbuttonwaiting

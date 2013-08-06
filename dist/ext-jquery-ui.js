@@ -1,4 +1,4 @@
-/*! Ben's jQuery UI Extensions - v1.0.4 - 2013-08-05
+/*! Ben's jQuery UI Extensions - v1.0.5 - 2013-08-06
 * https://github.com/bseth99/jquery-ui-extensions
 * Includes: jquery.ui.spinner.js, jquery.ui.combobox.js, jquery.ui.labeledslider.js, jquery.ui.slidespinner.js, jquery.ui.waitbutton.js
 * Copyright 2013 Ben Olson; Licensed MIT */
@@ -16,7 +16,7 @@ function modifier( fn ) {
 }
 
 $.widget( "ui.spinner", {
-	version: "1.0.4",
+	version: "1.0.5",
 	defaultElement: "<input>",
 	widgetEventPrefix: "spin",
 	options: {
@@ -526,7 +526,7 @@ $.widget( "ui.spinner", {
 
    $.widget( "ui.combobox", {
 
-      version: "1.0.4",
+      version: "1.0.5",
 
       widgetEventPrefix: "combobox",
 
@@ -719,6 +719,15 @@ $.widget( "ui.spinner", {
 
       widget: function () {
          return this.uiCombo;
+      },
+
+      _getCreateEventData: function() {
+
+         return {
+            select: this.element,
+            combo: this.uiCombo,
+            input: this.uiInput
+         };
       }
 
     });
@@ -731,7 +740,7 @@ $.widget( "ui.spinner", {
 
     $.widget( "ui.labeledslider", $.ui.slider, {
 
-      version: "1.0.4",
+      version: "1.0.5",
 
       options: {
          tickInterval: 0,
@@ -843,7 +852,7 @@ $.widget( "ui.spinner", {
 
 $.widget( "ui.slidespinner", $.ui.spinner, {
 
-   version: "1.0.4",
+   version: "1.0.5",
 
    widgetEventPrefix: "slidespinner",
 
@@ -936,7 +945,7 @@ $.widget( "ui.slidespinner", $.ui.spinner, {
 (function ( $, undefined ) {
     $.widget( "ui.waitbutton", $.ui.button, {
 
-       version: "1.0.4",
+       version: "1.0.5",
 
        // Keep button prefix instead of waitbutton
        // otherwise waiting event is waitbuttonwaiting
