@@ -138,7 +138,7 @@
                valid = false;
 
                this.element.children( "option" ).each(function() {
-                     if ( this.value.match( matcher ) ) {
+                     if ( $( this ).text().match( matcher ) ) {
                         this.selected = valid = true;
                         return false;
                      }
