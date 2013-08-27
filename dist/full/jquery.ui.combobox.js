@@ -1,6 +1,6 @@
  /*!
  * Copyright Ben Olson (https://github.com/bseth99/jquery-ui-extensions)
- * jQuery UI ComboBox 1.0.5
+ * jQuery UI ComboBox 1.0.6
  *
  *  Adapted from Jörn Zaefferer original implementation at
  *  http://www.learningjquery.com/2010/06/a-jquery-ui-combobox-under-the-hood
@@ -35,7 +35,7 @@
 
    $.widget( "ui.combobox", {
 
-      version: "1.0.5",
+      version: "1.0.6",
 
       widgetEventPrefix: "combobox",
 
@@ -138,7 +138,7 @@
                valid = false;
 
                this.element.children( "option" ).each(function() {
-                     if ( this.value.match( matcher ) ) {
+                     if ( $( this ).text().match( matcher ) ) {
                         this.selected = valid = true;
                         return false;
                      }
