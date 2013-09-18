@@ -1,6 +1,6 @@
  /*!
  * Copyright Ben Olson (https://github.com/bseth99/jquery-ui-extensions)
- * jQuery UI ComboBox 1.0.6
+ * jQuery UI ComboBox 1.0.7
  *
  *  Adapted from Jörn Zaefferer original implementation at
  *  http://www.learningjquery.com/2010/06/a-jquery-ui-combobox-under-the-hood
@@ -35,7 +35,7 @@
 
    $.widget( "ui.combobox", {
 
-      version: "1.0.6",
+      version: "1.0.7",
 
       widgetEventPrefix: "combobox",
 
@@ -49,12 +49,11 @@
              select = this.element.hide(),
              input, wrapper;
 
-         select.prop('selectedIndex', -1);
-
          input = this.uiInput =
                   $( "<input />" )
                       .insertAfter(select)
-                      .addClass("ui-widget ui-widget-content ui-corner-left ui-combobox-input");
+                      .addClass("ui-widget ui-widget-content ui-corner-left ui-combobox-input")
+                      .val( select.children(':selected').text() );
 
          wrapper = this.uiCombo =
             input.wrap( '<span>' )
