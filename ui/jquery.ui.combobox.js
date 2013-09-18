@@ -49,12 +49,11 @@
              select = this.element.hide(),
              input, wrapper;
 
-         select.prop('selectedIndex', -1);
-
          input = this.uiInput =
                   $( "<input />" )
                       .insertAfter(select)
-                      .addClass("ui-widget ui-widget-content ui-corner-left ui-combobox-input");
+                      .addClass("ui-widget ui-widget-content ui-corner-left ui-combobox-input")
+                      .val( select.children(':selected').text() );
 
          wrapper = this.uiCombo =
             input.wrap( '<span>' )
