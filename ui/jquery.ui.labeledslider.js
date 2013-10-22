@@ -39,11 +39,13 @@
 
       options: {
          tickInterval: 0,
+         tweenLabels: true,
          tickLabels: null
       },
 
       uiSlider: null,
       tickInterval: 0,
+      tweenLabels: true,
 
       _create: function( ) {
 
@@ -90,7 +92,7 @@
          for (;i<=cnt;i++) {
             $('<div>').addClass( 'ui-slider-label-ticks' )
                .css( dir, (Math.round( i / cnt * 10000 ) / 100) + '%' )
-               .html( '<span>'+( labels[i*inr+min] ? labels[i*inr+min] : i*inr+min )+'</span>' )
+               .html( '<span>'+( labels[i*inr+min] ? labels[i*inr+min] : (this.options.tweenLabels ? i*inr+min : '') )+'</span>' )
                .appendTo( $lbl );
          }
 

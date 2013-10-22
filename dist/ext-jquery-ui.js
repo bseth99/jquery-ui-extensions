@@ -1,4 +1,4 @@
-/*! Ben's jQuery UI Extensions - v1.0.7 - 2013-09-18
+/*! Ben's jQuery UI Extensions - v1.0.7 - 2013-10-22
 * https://github.com/bseth99/jquery-ui-extensions
 * Includes: jquery.ui.spinner.js, jquery.ui.combobox.js, jquery.ui.labeledslider.js, jquery.ui.slidespinner.js, jquery.ui.waitbutton.js
 * Copyright 2013 Ben Olson; Licensed MIT */
@@ -743,11 +743,13 @@ $.widget( "ui.spinner", {
 
       options: {
          tickInterval: 0,
+         tweenLabels: true,
          tickLabels: null
       },
 
       uiSlider: null,
       tickInterval: 0,
+      tweenLabels: true,
 
       _create: function( ) {
 
@@ -794,7 +796,7 @@ $.widget( "ui.spinner", {
          for (;i<=cnt;i++) {
             $('<div>').addClass( 'ui-slider-label-ticks' )
                .css( dir, (Math.round( i / cnt * 10000 ) / 100) + '%' )
-               .html( '<span>'+( labels[i*inr+min] ? labels[i*inr+min] : i*inr+min )+'</span>' )
+               .html( '<span>'+( labels[i*inr+min] ? labels[i*inr+min] : (this.options.tweenLabels ? i*inr+min : '') )+'</span>' )
                .appendTo( $lbl );
          }
 
