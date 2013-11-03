@@ -1,4 +1,4 @@
-/*! Ben's jQuery UI Extensions - v1.0.8 - 2013-10-22
+/*! Ben's jQuery UI Extensions - v1.0.9 - 2013-11-03
 * https://github.com/bseth99/jquery-ui-extensions
 * Includes: jquery.ui.spinner.js, jquery.ui.combobox.js, jquery.ui.labeledslider.js, jquery.ui.slidespinner.js, jquery.ui.waitbutton.js
 * Copyright 2013 Ben Olson; Licensed MIT */
@@ -16,7 +16,7 @@ function modifier( fn ) {
 }
 
 $.widget( "ui.spinner", {
-	version: "1.0.8",
+	version: "1.0.9",
 	defaultElement: "<input>",
 	widgetEventPrefix: "spin",
 	options: {
@@ -526,7 +526,7 @@ $.widget( "ui.spinner", {
 
    $.widget( "ui.combobox", {
 
-      version: "1.0.8",
+      version: "1.0.9",
 
       widgetEventPrefix: "combobox",
 
@@ -739,12 +739,13 @@ $.widget( "ui.spinner", {
 
     $.widget( "ui.labeledslider", $.ui.slider, {
 
-      version: "1.0.8",
+      version: "1.0.9",
 
       options: {
          tickInterval: 0,
          tweenLabels: true,
-         tickLabels: null
+         tickLabels: null,
+         tickArray: []
       },
 
       uiSlider: null,
@@ -789,17 +790,31 @@ $.widget( "ui.spinner", {
              max = this.options.max,
              inr = this.tickInterval,
              cnt = ( max - min ) / inr,
+             tickArray = this.options.tickArray,
              i = 0;
 
          $lbl.html('');
 
-         for (;i<=cnt;i++) {
-            $('<div>').addClass( 'ui-slider-label-ticks' )
-               .css( dir, (Math.round( i / cnt * 10000 ) / 100) + '%' )
-               .html( '<span>'+( labels[i*inr+min] ? labels[i*inr+min] : (this.options.tweenLabels ? i*inr+min : '') )+'</span>' )
-               .appendTo( $lbl );
-         }
+         if( tickArray.length > 0 ) {
+            // tickArray provided, print labels only in the array
+            for( i=0; i<tickArray.length; i++ ) {
+                var label = labels[tickArray[i]];
+                label = label ? label : tickArray[i];
 
+                $('<div>').addClass( 'ui-slider-label-ticks' )
+                   .css( dir, (Math.round( (tickArray[i] - min)/ cnt * 10000 ) / 100) + '%' )
+                   .html( '<span>'+ label +'</span>' )
+                   .appendTo( $lbl );
+            }
+         }
+         else {
+             for (;i<=cnt;i++) {
+                $('<div>').addClass( 'ui-slider-label-ticks' )
+                   .css( dir, (Math.round( i / cnt * 10000 ) / 100) + '%' )
+                   .html( '<span>'+( labels[i*inr+min] ? labels[i*inr+min] : (this.options.tweenLabels ? i*inr+min : '') )+'</span>' )
+                   .appendTo( $lbl );
+             }
+         }
       },
 
       _setOption: function( key, value ) {
@@ -810,6 +825,7 @@ $.widget( "ui.spinner", {
 
              case 'tickInterval':
              case 'tickLabels':
+             case 'tickArray':
              case 'min':
              case 'max':
              case 'step':
@@ -853,7 +869,7 @@ $.widget( "ui.spinner", {
 
 $.widget( "ui.slidespinner", $.ui.spinner, {
 
-   version: "1.0.8",
+   version: "1.0.9",
 
    widgetEventPrefix: "slidespinner",
 
@@ -946,7 +962,7 @@ $.widget( "ui.slidespinner", $.ui.spinner, {
 (function ( $, undefined ) {
     $.widget( "ui.waitbutton", $.ui.button, {
 
-       version: "1.0.8",
+       version: "1.0.9",
 
        // Keep button prefix instead of waitbutton
        // otherwise waiting event is waitbuttonwaiting

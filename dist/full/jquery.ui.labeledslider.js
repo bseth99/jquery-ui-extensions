@@ -1,6 +1,6 @@
 /*!
  * Copyright (c) 2012 Ben Olson (https://github.com/bseth99/jquery-ui-extensions)
- * jQuery UI LabeledSlider 1.0.8
+ * jQuery UI LabeledSlider 1.0.9
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -35,12 +35,13 @@
 
     $.widget( "ui.labeledslider", $.ui.slider, {
 
-      version: "1.0.8",
+      version: "1.0.9",
 
       options: {
          tickInterval: 0,
          tweenLabels: true,
-         tickLabels: null
+         tickLabels: null,
+         tickArray: []
       },
 
       uiSlider: null,
@@ -85,17 +86,31 @@
              max = this.options.max,
              inr = this.tickInterval,
              cnt = ( max - min ) / inr,
+             tickArray = this.options.tickArray,
              i = 0;
 
          $lbl.html('');
 
-         for (;i<=cnt;i++) {
-            $('<div>').addClass( 'ui-slider-label-ticks' )
-               .css( dir, (Math.round( i / cnt * 10000 ) / 100) + '%' )
-               .html( '<span>'+( labels[i*inr+min] ? labels[i*inr+min] : (this.options.tweenLabels ? i*inr+min : '') )+'</span>' )
-               .appendTo( $lbl );
-         }
+         if( tickArray.length > 0 ) {
+            // tickArray provided, print labels only in the array
+            for( i=0; i<tickArray.length; i++ ) {
+                var label = labels[tickArray[i]];
+                label = label ? label : tickArray[i];
 
+                $('<div>').addClass( 'ui-slider-label-ticks' )
+                   .css( dir, (Math.round( (tickArray[i] - min)/ cnt * 10000 ) / 100) + '%' )
+                   .html( '<span>'+ label +'</span>' )
+                   .appendTo( $lbl );
+            }
+         }
+         else {
+             for (;i<=cnt;i++) {
+                $('<div>').addClass( 'ui-slider-label-ticks' )
+                   .css( dir, (Math.round( i / cnt * 10000 ) / 100) + '%' )
+                   .html( '<span>'+( labels[i*inr+min] ? labels[i*inr+min] : (this.options.tweenLabels ? i*inr+min : '') )+'</span>' )
+                   .appendTo( $lbl );
+             }
+         }
       },
 
       _setOption: function( key, value ) {
@@ -106,6 +121,7 @@
 
              case 'tickInterval':
              case 'tickLabels':
+             case 'tickArray':
              case 'min':
              case 'max':
              case 'step':
