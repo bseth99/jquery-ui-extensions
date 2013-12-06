@@ -66,10 +66,7 @@
 
          this._alignWithStep();
 
-         if ( this.orientation == 'horizontal' ) {
-            this.uiSlider
-               .width( this.element.width() );
-         } else {
+         if ( this.orientation != 'horizontal' ) {
             this.uiSlider
                .height( this.element.height() );
          }
