@@ -68,10 +68,10 @@
 
          if ( this.orientation == 'horizontal' ) {
             this.uiSlider
-               .width( this.element.width() );
+               .width( this.element.css('width') );
          } else {
             this.uiSlider
-               .height( this.element.height() );
+               .height( this.element.css('height') );
          }
 
          this._drawLabels();
