@@ -1,6 +1,6 @@
 /*!
  * Copyright (c) 2012 Ben Olson (https://github.com/bseth99/jquery-ui-extensions)
- * jQuery UI LabeledSlider 1.0.9
+ * jQuery UI LabeledSlider 1.0.10
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -35,7 +35,7 @@
 
     $.widget( "ui.labeledslider", $.ui.slider, {
 
-      version: "1.0.9",
+      version: "1.0.10",
 
       options: {
          tickInterval: 0,
@@ -68,10 +68,10 @@
 
          if ( this.orientation == 'horizontal' ) {
             this.uiSlider
-               .width( this.element.width() );
+               .width( this.element.css('width') );
          } else {
             this.uiSlider
-               .height( this.element.height() );
+               .height( this.element.css('height') );
          }
 
          this._drawLabels();
