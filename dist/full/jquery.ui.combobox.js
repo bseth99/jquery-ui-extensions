@@ -1,6 +1,6 @@
  /*!
  * Copyright Ben Olson (https://github.com/bseth99/jquery-ui-extensions)
- * jQuery UI ComboBox 1.0.10
+ * jQuery UI ComboBox 1.0.11
  *
  *  Adapted from Jörn Zaefferer original implementation at
  *  http://www.learningjquery.com/2010/06/a-jquery-ui-combobox-under-the-hood
@@ -35,7 +35,7 @@
 
    $.widget( "ui.combobox", {
 
-      version: "1.0.10",
+      version: "1.0.11",
 
       widgetEventPrefix: "combobox",
 
@@ -146,9 +146,14 @@
                 if ( !valid ) {
 
                    // remove invalid value, as it didn't match anything
-                   $el.val( "" );
+                   $el.val( '' );
+
+                   // Internally, term must change before another search is performed
+                   // if the same search is performed again, the menu won't be shown
+                   // because the value didn't actually change via a keyboard event
+                   $el.data( 'ui-autocomplete' ).term = '';
+
                    this.element.prop('selectedIndex', -1);
-                   //return false;
 
                 }
             }
