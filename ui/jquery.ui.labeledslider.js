@@ -97,7 +97,7 @@
                 var label = labels[tickArray[i]];
                 label = label ? label : tickArray[i];
 
-                $('<div>').addClass( 'ui-slider-label-ticks' )
+                $('<div>').addClass( 'ui-slider-label-ticks' ).addClass( 'ui-slider-label-tick-' + tickArray[i] )
                    .css( dir, (Math.round( (tickArray[i] - min)/ cnt * 10000 ) / 100) + '%' )
                    .html( '<span>'+ label +'</span>' )
                    .appendTo( $lbl );
