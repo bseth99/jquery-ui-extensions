@@ -28,5 +28,5 @@ includes:
 
 ## License
 
-Copyright (c) 2012-2013 Ben Olson  
+Copyright (c) 2012-2014 Ben Olson  
 Licensed under the MIT License
