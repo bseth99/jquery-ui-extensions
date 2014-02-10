@@ -1,7 +1,7 @@
-/*! Ben's jQuery UI Extensions - v1.0.11 - 2013-12-14
+/*! Ben's jQuery UI Extensions - v1.0.12 - 2014-02-09
 * https://github.com/bseth99/jquery-ui-extensions
 * Includes: jquery.ui.spinner.js, jquery.ui.combobox.js, jquery.ui.labeledslider.js, jquery.ui.slidespinner.js, jquery.ui.waitbutton.js
-* Copyright 2013 Ben Olson; Licensed MIT */
+* Copyright 2014 Ben Olson; Licensed MIT */
 (function( $ ) {
 
 function modifier( fn ) {
@@ -16,7 +16,7 @@ function modifier( fn ) {
 }
 
 $.widget( "ui.spinner", {
-	version: "1.0.11",
+	version: "1.0.12",
 	defaultElement: "<input>",
 	widgetEventPrefix: "spin",
 	options: {
@@ -526,7 +526,7 @@ $.widget( "ui.spinner", {
 
    $.widget( "ui.combobox", {
 
-      version: "1.0.11",
+      version: "1.0.12",
 
       widgetEventPrefix: "combobox",
 
@@ -621,36 +621,65 @@ $.widget( "ui.spinner", {
          "autocompletechange input" : function(event, ui) {
 
             var $el = $(event.currentTarget);
-
+            var changedOption = ui.item ? ui.item.option : null;
             if ( !ui.item ) {
 
                var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( $el.val() ) + "$", "i" ),
-               valid = false;
+               valid = false,
+               matchContains = null,
+               iContains = 0,
+               iSelectCtr = -1,
+               iSelected = -1,
+               optContains = null;
+               if (this.options.autofillsinglematch) {
+                  matchContains = new RegExp($.ui.autocomplete.escapeRegex($el.val()), "i");
+               }
+
 
                this.element.children( "option" ).each(function() {
-                     if ( $( this ).text().match( matcher ) ) {
+                     var t = $(this).text();
+                     if ( t.match( matcher ) ) {
                         this.selected = valid = true;
                         return false;
+                     }
+                     if (matchContains) {
+                        // look for items containing the value
+                        iSelectCtr++;
+                        if (t.match(matchContains)) {
+                           iContains++;
+                           optContains = $(this);
+                           iSelected = iSelectCtr;
+                        }
                      }
                   });
 
                 if ( !valid ) {
+                   // autofill option:  if there is just one match, then select the matched option
+                   if (iContains == 1) {
+                      changedOption = optContains[0];
+                      changedOption.selected = true;
+                      var t2 = optContains.text();
+                      $el.val(t2);
+                      $el.data('ui-autocomplete').term = t2;
+                      this.element.prop('selectedIndex', iSelected);
+                      console.log("Found single match with '" + t2 + "'");
+                   } else {
 
-                   // remove invalid value, as it didn't match anything
-                   $el.val( '' );
+                      // remove invalid value, as it didn't match anything
+                      $el.val( '' );
 
-                   // Internally, term must change before another search is performed
-                   // if the same search is performed again, the menu won't be shown
-                   // because the value didn't actually change via a keyboard event
-                   $el.data( 'ui-autocomplete' ).term = '';
+                      // Internally, term must change before another search is performed
+                      // if the same search is performed again, the menu won't be shown
+                      // because the value didn't actually change via a keyboard event
+                      $el.data( 'ui-autocomplete' ).term = '';
 
-                   this.element.prop('selectedIndex', -1);
-
+                      this.element.prop('selectedIndex', -1);
+                   }
                 }
             }
 
             this._trigger( "change", event, {
-                  item: ui.item ? ui.item.option : null
+                  item: changedOption
                 });
 
          },
@@ -744,7 +773,7 @@ $.widget( "ui.spinner", {
 
     $.widget( "ui.labeledslider", $.ui.slider, {
 
-      version: "1.0.11",
+      version: "1.0.12",
 
       options: {
          tickInterval: 0,
@@ -806,7 +835,7 @@ $.widget( "ui.spinner", {
                 var label = labels[tickArray[i]];
                 label = label ? label : tickArray[i];
 
-                $('<div>').addClass( 'ui-slider-label-ticks' )
+                $('<div>').addClass( 'ui-slider-label-ticks' ).addClass( 'ui-slider-label-tick-' + tickArray[i] )
                    .css( dir, (Math.round( (tickArray[i] - min)/ cnt * 10000 ) / 100) + '%' )
                    .html( '<span>'+ label +'</span>' )
                    .appendTo( $lbl );
@@ -874,7 +903,7 @@ $.widget( "ui.spinner", {
 
 $.widget( "ui.slidespinner", $.ui.spinner, {
 
-   version: "1.0.11",
+   version: "1.0.12",
 
    widgetEventPrefix: "slidespinner",
 
@@ -967,7 +996,7 @@ $.widget( "ui.slidespinner", $.ui.spinner, {
 (function ( $, undefined ) {
     $.widget( "ui.waitbutton", $.ui.button, {
 
-       version: "1.0.11",
+       version: "1.0.12",
 
        // Keep button prefix instead of waitbutton
        // otherwise waiting event is waitbuttonwaiting

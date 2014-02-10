@@ -1,6 +1,6 @@
  /*!
  * Copyright Ben Olson (https://github.com/bseth99/jquery-ui-extensions)
- * jQuery UI ComboBox 1.0.11
+ * jQuery UI ComboBox 1.0.12
  *
  *  Adapted from Jörn Zaefferer original implementation at
  *  http://www.learningjquery.com/2010/06/a-jquery-ui-combobox-under-the-hood
@@ -35,7 +35,7 @@
 
    $.widget( "ui.combobox", {
 
-      version: "1.0.11",
+      version: "1.0.12",
 
       widgetEventPrefix: "combobox",
 
@@ -130,36 +130,65 @@
          "autocompletechange input" : function(event, ui) {
 
             var $el = $(event.currentTarget);
-
+            var changedOption = ui.item ? ui.item.option : null;
             if ( !ui.item ) {
 
                var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( $el.val() ) + "$", "i" ),
-               valid = false;
+               valid = false,
+               matchContains = null,
+               iContains = 0,
+               iSelectCtr = -1,
+               iSelected = -1,
+               optContains = null;
+               if (this.options.autofillsinglematch) {
+                  matchContains = new RegExp($.ui.autocomplete.escapeRegex($el.val()), "i");
+               }
+
 
                this.element.children( "option" ).each(function() {
-                     if ( $( this ).text().match( matcher ) ) {
+                     var t = $(this).text();
+                     if ( t.match( matcher ) ) {
                         this.selected = valid = true;
                         return false;
+                     }
+                     if (matchContains) {
+                        // look for items containing the value
+                        iSelectCtr++;
+                        if (t.match(matchContains)) {
+                           iContains++;
+                           optContains = $(this);
+                           iSelected = iSelectCtr;
+                        }
                      }
                   });
 
                 if ( !valid ) {
+                   // autofill option:  if there is just one match, then select the matched option
+                   if (iContains == 1) {
+                      changedOption = optContains[0];
+                      changedOption.selected = true;
+                      var t2 = optContains.text();
+                      $el.val(t2);
+                      $el.data('ui-autocomplete').term = t2;
+                      this.element.prop('selectedIndex', iSelected);
+                      console.log("Found single match with '" + t2 + "'");
+                   } else {
 
-                   // remove invalid value, as it didn't match anything
-                   $el.val( '' );
+                      // remove invalid value, as it didn't match anything
+                      $el.val( '' );
 
-                   // Internally, term must change before another search is performed
-                   // if the same search is performed again, the menu won't be shown
-                   // because the value didn't actually change via a keyboard event
-                   $el.data( 'ui-autocomplete' ).term = '';
+                      // Internally, term must change before another search is performed
+                      // if the same search is performed again, the menu won't be shown
+                      // because the value didn't actually change via a keyboard event
+                      $el.data( 'ui-autocomplete' ).term = '';
 
-                   this.element.prop('selectedIndex', -1);
-
+                      this.element.prop('selectedIndex', -1);
+                   }
                 }
             }
 
             this._trigger( "change", event, {
-                  item: ui.item ? ui.item.option : null
+                  item: changedOption
                 });
 
          },

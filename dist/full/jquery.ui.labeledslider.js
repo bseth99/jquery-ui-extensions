@@ -1,6 +1,6 @@
 /*!
  * Copyright (c) 2012 Ben Olson (https://github.com/bseth99/jquery-ui-extensions)
- * jQuery UI LabeledSlider 1.0.11
+ * jQuery UI LabeledSlider 1.0.12
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -35,7 +35,7 @@
 
     $.widget( "ui.labeledslider", $.ui.slider, {
 
-      version: "1.0.11",
+      version: "1.0.12",
 
       options: {
          tickInterval: 0,
@@ -97,7 +97,7 @@
                 var label = labels[tickArray[i]];
                 label = label ? label : tickArray[i];
 
-                $('<div>').addClass( 'ui-slider-label-ticks' )
+                $('<div>').addClass( 'ui-slider-label-ticks' ).addClass( 'ui-slider-label-tick-' + tickArray[i] )
                    .css( dir, (Math.round( (tickArray[i] - min)/ cnt * 10000 ) / 100) + '%' )
                    .html( '<span>'+ label +'</span>' )
                    .appendTo( $lbl );
