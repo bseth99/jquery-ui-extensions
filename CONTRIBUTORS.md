@@ -12,3 +12,7 @@
   
 * mwittmann / ([@mwittmann](https://github.com/mwittmann))
   * Add "autofillsinglematch" option to combobox
+ 
+* Billiam / ([@Billiam](https://github.com/Billiam))
+  * Improve slow combo box performance with large lists
+  
