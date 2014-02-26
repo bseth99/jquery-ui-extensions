@@ -109,7 +109,7 @@
 
                   if ( this.value && ( !request.term || matcher.test(text) ) ) {
                      var optionData = {
-                         label: label,
+                         label: text,
                          value: text,
                          option: this
                      };
@@ -121,7 +121,7 @@
                               ")(?![^<>]*>)(?![^&;]+;)", "gi"),
                               "<strong>$1</strong>");
                     }
-                    return optionData;                    
+                    return optionData;
                   }
               })
            );
