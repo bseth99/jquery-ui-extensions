@@ -1,4 +1,4 @@
-/*! Ben's jQuery UI Extensions - v1.0.12 - 2014-02-09
+/*! Ben's jQuery UI Extensions - v1.0.12 - 2014-02-13
 * https://github.com/bseth99/jquery-ui-extensions
 * Includes: jquery.ui.spinner.js, jquery.ui.combobox.js, jquery.ui.labeledslider.js, jquery.ui.slidespinner.js, jquery.ui.waitbutton.js
 * Copyright 2014 Ben Olson; Licensed MIT */
@@ -596,21 +596,23 @@ $.widget( "ui.spinner", {
 
          var matcher = new RegExp( $.ui.autocomplete.escapeRegex(request.term), 'i' );
          response( this.element.children('option').map(function() {
-
                   var text = $( this ).text();
 
                   if ( this.value && ( !request.term || matcher.test(text) ) ) {
-
-                     return {
-                           label: text.replace(
-                              new RegExp(
-                                  "(?![^&;]+;)(?!<[^<>]*)(" +
-                                  $.ui.autocomplete.escapeRegex(request.term) +
-                                  ")(?![^<>]*>)(?![^&;]+;)", "gi"),
-                                  "<strong>$1</strong>"),
-                           value: text,
-                           option: this
-                        };
+                     var optionData = {
+                         label: label,
+                         value: text,
+                         option: this
+                     };
+                     if (request.term) {
+                        optionData.label = text.replace(
+                           new RegExp(
+                              "(?![^&;]+;)(?!<[^<>]*)(" +
+                              $.ui.autocomplete.escapeRegex(request.term) +
+                              ")(?![^<>]*>)(?![^&;]+;)", "gi"),
+                              "<strong>$1</strong>");
+                    }
+                    return optionData;                    
                   }
               })
            );
