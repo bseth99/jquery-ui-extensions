@@ -85,32 +85,28 @@
              min = this.options.min,
              max = this.options.max,
              inr = this.tickInterval,
-             cnt = ( max - min ) / inr,
+             cnt = ( max - min ),
              tickArray = this.options.tickArray,
+             ta = tickArray.length > 0,
+             label, pt,
              i = 0;
 
          $lbl.html('');
 
-         if( tickArray.length > 0 ) {
-            // tickArray provided, print labels only in the array
-            for( i=0; i<tickArray.length; i++ ) {
-                var label = labels[tickArray[i]];
-                label = label ? label : tickArray[i];
+         for (;i<=cnt;i++) {
 
-                $('<div>').addClass( 'ui-slider-label-ticks' ).addClass( 'ui-slider-label-tick-' + tickArray[i] )
-                   .css( dir, (Math.round( (tickArray[i] - min)/ cnt * 10000 ) / 100) + '%' )
-                   .html( '<span>'+ label +'</span>' )
+            if ( ( !ta && i%inr == 0 ) || ( ta && tickArray.indexOf( i+min ) > -1 ) ) {
+
+               label = labels[i+min] ? labels[i+min] : (this.options.tweenLabels ? i+min : '');
+
+               $('<div>').addClass( 'ui-slider-label-ticks' )
+                   .css( dir, (Math.round( ( i / cnt ) * 10000 ) / 100) + '%' )
+                   .html( '<span>'+( label )+'</span>' )
                    .appendTo( $lbl );
+
             }
          }
-         else {
-             for (;i<=cnt;i++) {
-                $('<div>').addClass( 'ui-slider-label-ticks' )
-                   .css( dir, (Math.round( i / cnt * 10000 ) / 100) + '%' )
-                   .html( '<span>'+( labels[i*inr+min] ? labels[i*inr+min] : (this.options.tweenLabels ? i*inr+min : '') )+'</span>' )
-                   .appendTo( $lbl );
-             }
-         }
+
       },
 
       _setOption: function( key, value ) {
