@@ -53,7 +53,8 @@
                   $( "<input />" )
                       .insertAfter(select)
                       .addClass("ui-widget ui-widget-content ui-corner-left ui-combobox-input")
-                      .val( select.children(':selected').text() );
+                      .val( select.children(':selected').text() )
+                      .attr('tabindex', select.attr( 'tabindex'));
 
          wrapper = this.uiCombo =
             input.wrap( '<span>' )
