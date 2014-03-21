@@ -17,7 +17,8 @@ var
       "slidespinner",
       "labeledslider",
       "combobox",
-      "waitbutton"
+      "waitbutton",
+      "timepicker"
    ].map(function( component ) {
       return "themes/base/jquery.ui." + component + ".css";
    }),

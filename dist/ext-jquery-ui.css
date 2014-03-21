@@ -1,6 +1,6 @@
 /*! Ben's jQuery UI Extensions - v1.0.14 - 2014-03-21
 * https://github.com/bseth99/jquery-ui-extensions
-* Includes: jquery.ui.spinner.css, jquery.ui.slidespinner.css, jquery.ui.labeledslider.css, jquery.ui.combobox.css, jquery.ui.waitbutton.css
+* Includes: jquery.ui.spinner.css, jquery.ui.slidespinner.css, jquery.ui.labeledslider.css, jquery.ui.combobox.css, jquery.ui.waitbutton.css, jquery.ui.timepicker.css
 * Copyright 2014 Ben Olson; Licensed MIT */
 .ui-spinner {
 	position: relative;
@@ -151,4 +151,8 @@
 .ui-wait-button .ui-icon-waiting {
    background-image: url("images/waitbutton-loading.gif");
    background-position: 0 center;
+}
+
+.ui-timepicker-hour, .ui-timepicker-minute, .ui-timepicker-ampm {
+   width: 1.6em;
 }
