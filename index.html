@@ -51,8 +51,15 @@ by adding a value function and some addtional features.</p></li>
 <li><p><strong>WaitButton</strong>: Extends the default jQueryUI Button widget by adding a spinner and disabling the
 button when its clicked.  Prevents multiple clicking and provides visual feedback that something
 is happening.</p></li>
+
+<li><p><strong>TimePicker</strong>: Uses several Spinner widgets to allow entering time.  The spinners will automatically
+rollover another time component (ie hours flip from 11 -> 12 so AM -> PM and minutes cause hours to increment/decrement).
+<a href="http://www.benknowscode.com/2014/03/build-time-picker-using-jquery-ui.html">Read this blog post</a> for more information.
+</p></li>
+
 <li><p><strong>Scrollable</strong>: Moved to <a href="../jquery-ui-scrollable/index.html">bseth99/jquery-ui-scrollable</a></p></li>
-</ul><h2>
+</ul>
+<h2>
 <a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
 
 <p>Either download the
@@ -68,6 +75,8 @@ file and include it after any jQuery UI CSS files.</p>
 <ul>
 <li>
 <strong>SlideSpinner</strong>: Requires the enhanced Spinner control</li>
+<li>
+<strong>TimePicker</strong>: Requires the enhanced Spinner control</li>
 </ul><h3>
 <a name="waitbutton" class="anchor" href="#waitbutton"><span class="octicon octicon-link"></span></a>WaitButton</h3>
 
@@ -115,6 +124,27 @@ button remaining in the waiting state.</p>
 
 <p>The <code>done()</code> callback takes up to two option arguments that control the new label and state of the button.
 Review the <a href="tests/visual/waitbutton/base.html">demo</a> for examples of each variation.</p>
+
+<h3>
+   <a name="timepicker" class="anchor" href="#timepicker"><span class="octicon octicon-link"></span></a>
+   TimePicker
+</h3>
+
+<p>TimePicker currently exposes the getter/setter function <code>value</code>. After initializing the widget, set the value using a
+time string:</p>
+
+<pre><code>   $( '#picker' ).timepicker();
+
+   $( '#picker' ).timepicker( 'value', '8:25 AM' );
+</code></pre>
+
+<p>And retrieve the value as a time string:</p>
+
+<pre><code>   time = $( '#picker' ).timepicker( 'value' );
+   // time == '8:25 AM'
+</code></pre>
+
+
 
 <h2>Demo</h2>
 

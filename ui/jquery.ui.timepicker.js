@@ -174,10 +174,11 @@
                var val = +self.$minute.val();
 
                if ( val == -1 || val == 60 ) {
-                  self.$hour.val('')
+                  self.$hour.val('');
                }
 
                self._ensureValue();
+
             }
          });
 
@@ -189,6 +190,17 @@
             }
          });
 
+         this._on( this._events );
+      },
+
+      _events: {
+
+         'click input': function( e ) {
+
+            var $target = $( e.currentTarget );
+
+            $target.select();
+         }
       },
 
       _destroy: function () {
