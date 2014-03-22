@@ -19,7 +19,12 @@ includes:
 - **WaitButton**: Extends the default jQueryUI Button widget by adding a spinner and disabling the
    button when its clicked.  Prevents multiple clicking and provides visual feedback that something
    is happening.
-   
+  
+- **WaitButton**: Uses several Spinner widgets to allow entering time.  The spinners will automatically
+   rollover another time component (ie hours flip from 11 -> 12 so AM -> PM and minutes cause hours to 
+   increment/decrement).  [Read this blog post](http://www.benknowscode.com/2014/03/build-time-picker-using-jquery-ui.html)
+   for more information.
+
 - **Scrollable**: Moved to [bseth99/jquery-ui-scrollable](https://github.com/bseth99/jquery-ui-scrollable)
 
 
