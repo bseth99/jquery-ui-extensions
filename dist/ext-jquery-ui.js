@@ -1,4 +1,4 @@
-/*! Ben's jQuery UI Extensions - v1.0.14 - 2014-03-21
+/*! Ben's jQuery UI Extensions - v1.0.14 - 2014-03-22
 * https://github.com/bseth99/jquery-ui-extensions
 * Includes: jquery.ui.spinner.js, jquery.ui.combobox.js, jquery.ui.labeledslider.js, jquery.ui.slidespinner.js, jquery.ui.timepicker.js, jquery.ui.waitbutton.js
 * Copyright 2014 Ben Olson; Licensed MIT */
@@ -1137,10 +1137,11 @@ $.widget( "ui.slidespinner", $.ui.spinner, {
                var val = +self.$minute.val();
 
                if ( val == -1 || val == 60 ) {
-                  self.$hour.val('')
+                  self.$hour.val('');
                }
 
                self._ensureValue();
+
             }
          });
 
@@ -1152,6 +1153,17 @@ $.widget( "ui.slidespinner", $.ui.spinner, {
             }
          });
 
+         this._on( this._events );
+      },
+
+      _events: {
+
+         'click input': function( e ) {
+
+            var $target = $( e.currentTarget );
+
+            $target.select();
+         }
       },
 
       _destroy: function () {
