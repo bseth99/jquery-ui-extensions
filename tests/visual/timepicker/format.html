@@ -6,13 +6,14 @@
 
    <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
 
-   <title>TimePicker Get/Set</title>
+   <title>TimePicker Formats</title>
 
    <script src="http://code.jquery.com/jquery.js"></script>
    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 
    <link rel="stylesheet" href="../../../themes/base/jquery.ui.spinner.css">
    <link rel="stylesheet" href="../../../themes/base/jquery.ui.timepicker.css">
+   <script src="../../../external/moment.min.js"></script>
    <script src="../../../ui/jquery.ui.spinner.js"></script>
    <script src="../../../ui/jquery.ui.timepicker.js"></script>
 
@@ -26,26 +27,59 @@
 
 $(function() {
 
-   $( '#picker' ).timepicker();
+   $( '#picker-12' ).timepicker();
 
-   $( '#get' ).click(function() {
+   $( '#get-12' ).click(function() {
 
-      $( '#inout' ).val( $( '#picker' ).timepicker( 'value' ) );
-
-   });
-
-   $( '#set' ).click(function() {
-
-      $( '#picker' ).timepicker( 'value', $( '#inout' ).val() );
+      $( '#inout-12' ).val( $( '#picker-12' ).timepicker( 'value' ).format( 'h:mm A' ) );
 
    });
 
-   if ( $( '#inout' ).val().length === 0 ) {
+   $( '#set-12' ).click(function() {
 
-      $( '#inout' ).val( '8:25 AM' );
+      $( '#picker-12' ).timepicker( 'value', $( '#inout-12' ).val() );
+
+   });
+
+   $( '#set-now-12' ).click(function() {
+
+      $( '#picker-12' ).timepicker( 'value', new Date() );
+
+   });
+
+   if ( $( '#inout-12' ).val().length === 0 ) {
+
+      $( '#inout-12' ).val( '8:25 AM' );
 
    }
 
+
+
+   $( '#picker-24' ).timepicker({ format: 'HH:mm' });
+
+   $( '#get-24' ).click(function() {
+
+      $( '#inout-24' ).val( $( '#picker-24' ).timepicker( 'value' ).format( 'H:mm' ) );
+
+   });
+
+   $( '#set-24' ).click(function() {
+
+      $( '#picker-24' ).timepicker( 'value', $( '#inout-24' ).val() );
+
+   });
+
+   $( '#set-now-24' ).click(function() {
+
+      $( '#picker-24' ).timepicker( 'value', new Date() );
+
+   });
+
+   if ( $( '#inout-24' ).val().length === 0 ) {
+
+      $( '#inout-24' ).val( '8:25' );
+
+   }
 });
 
 </script>
@@ -64,19 +98,35 @@ $(function() {
 <br/>
 
 <div>
-Basic picker without using MomentJS to handle time formatting.  This means it can only
-get/set strings.  See the format example which includes Moment to activate more
-advanced handling.
+Examples for both a 12/24-hour clock.  Set the "format" option to either "HH:mm" for a 24-hour
+or "hh:mm a" for a 12-hour clock.  MomentJS is used to parse the incoming time so it can be
+a Date, String, or Moment instance.  The value function return a Moment instance so
+any of the libraries functions can be used on the result.
 </div>
 <br/>
 
-<div id="picker"></div>
+<h4>12-hour</h4>
+
+<div id="picker-12"></div>
 <br/>
 
-<input id="inout"/>
+<input id="inout-12"/>
 <br/>
-<button id="get">Get</button>
-<button id="set">Set</button>
+<button id="get-12">Get</button>
+<button id="set-12">Set</button>
+<button id="set-now-12">Set Now</button>
+
+
+<h4>24-hour</h4>
+
+<div id="picker-24"></div>
+<br/>
+
+<input id="inout-24"/>
+<br/>
+<button id="get-24">Get</button>
+<button id="set-24">Set</button>
+<button id="set-now-24">Set Now</button>
 
 
 <script type="text/javascript">

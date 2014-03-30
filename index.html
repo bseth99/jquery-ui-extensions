@@ -145,6 +145,31 @@ time string:</p>
 </code></pre>
 
 
+<p>You can also initialize the picker to show time in either a 12 or 24 hour clock:</p>
+
+<h4>12-hour (default)</h4>
+<pre><code>   $( '#picker' ).timepicker({ format: 'hh:mm a' });
+</code></pre>
+
+<h4>24-hour</h4>
+<pre><code>   $( '#picker' ).timepicker({ format: 'HH:mm' });
+</code></pre>
+
+<p>Optionally, you can include <a href="http://momentjs.com">MomentJS</a> to activate more advanced value handling.  Without Moment,
+only time strings will be accepted/returned by the value function.  With Moment, you can pass Date, String, or Moment instances to the
+value function and it will return Moment instances representing the selected time:</p>
+
+<pre><code>   $( '#picker' ).timepicker();
+
+   $( '#picker' ).timepicker( 'value', '8:25 AM' );
+
+   time = $( '#picker' ).timepicker( 'value' );
+
+   time.format( 'HH:mm' ); // 08:25
+   time.add( 'm', 5 );
+   time.format( 'h:mm A' ); // 8:30 AM
+</code></pre>
+
 
 <h2>Demo</h2>
 
