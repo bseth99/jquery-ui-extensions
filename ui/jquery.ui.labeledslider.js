@@ -55,7 +55,7 @@
          this.uiSlider =
              this.element
                 .wrap( '<div class="ui-slider-wrapper ui-widget"></div>' )
-                .before( '<div class="ui-slider-labels">' )
+                .before( '<div class="ui-slider-labels"></div>' )
                 .parent()
                 .addClass( this.orientation )
                 .css( 'font-size', this.element.css('font-size') );
