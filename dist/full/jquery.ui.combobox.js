@@ -54,7 +54,8 @@
                       .insertAfter(select)
                       .addClass("ui-widget ui-widget-content ui-corner-left ui-combobox-input")
                       .val( select.children(':selected').text() )
-                      .attr('tabindex', select.attr( 'tabindex'));
+                      .attr('tabindex', select.attr( 'tabindex'))
+                      .width($(this.element).width());
 
          wrapper = this.uiCombo =
             input.wrap( '<span>' )
@@ -70,7 +71,9 @@
 
              appendTo: wrapper,
              source: $.proxy( this, "_linkSelectList" )
-
+             select: function(event, ui) {
+               var selectedObj = ui.item;              
+               $(this).attr('title', ui.item.value)
           });
 
          $( "<button>" )
@@ -250,6 +253,7 @@
 
          if ( valid ) {
             this.uiInput.val(select.children(':selected').text());
+            this.uiInput.attr('title', select.children(':selected').text())
          } else {
             this.uiInput.val( "" );
             this.element.prop('selectedIndex', -1);
