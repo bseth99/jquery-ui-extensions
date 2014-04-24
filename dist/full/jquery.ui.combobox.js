@@ -250,6 +250,7 @@
 
          if ( valid ) {
             this.uiInput.val(select.children(':selected').text());
+            this.uiInput.attr('title', select.children(':selected').text())
          } else {
             this.uiInput.val( "" );
             this.element.prop('selectedIndex', -1);
