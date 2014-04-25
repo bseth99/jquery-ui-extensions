@@ -95,6 +95,7 @@
          input.data( "ui-autocomplete" )._renderItem = function( ul, item ) {
 
                return $( "<li>" )
+                           .attr('class', item.option.className)
                            .append( $( "<a>" ).html( item.label ) )
                            .appendTo( ul );
 
