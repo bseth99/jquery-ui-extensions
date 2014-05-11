@@ -54,7 +54,8 @@
                       .insertAfter(select)
                       .addClass("ui-widget ui-widget-content ui-corner-left ui-combobox-input")
                       .val( select.children(':selected').text() )
-                      .attr('tabindex', select.attr( 'tabindex'));
+                      .attr('tabindex', select.attr( 'tabindex'))
+                      .width($(this.element).width());
 
          wrapper = this.uiCombo =
             input.wrap( '<span>' )
@@ -69,8 +70,11 @@
              minLength: 0,
 
              appendTo: wrapper,
-             source: $.proxy( this, "_linkSelectList" )
-
+             source: $.proxy( this, "_linkSelectList" ),
+             select: function(event, ui) {
+               //var selectedObj = ui.item;              
+               $(this).attr('title', ui.item.value);
+           }
           });
 
          $( "<button>" )
@@ -92,6 +96,7 @@
          input.data( "ui-autocomplete" )._renderItem = function( ul, item ) {
 
                return $( "<li>" )
+                           .attr('class', item.option.className)
                            .append( $( "<a>" ).html( item.label ) )
                            .appendTo( ul );
 
@@ -105,7 +110,8 @@
       _linkSelectList: function( request, response ) {
 
          var matcher = new RegExp( $.ui.autocomplete.escapeRegex(request.term), 'i' );
-         response( this.element.children('option').map(function() {
+         //response( this.element.children('option').map(function() {
+         response( this.element.children('option:not([style*="display: none"])').map(function() {           
                   var text = $( this ).text();
 
                   if ( this.value && ( !request.term || matcher.test(text) ) ) {
@@ -250,6 +256,7 @@
 
          if ( valid ) {
             this.uiInput.val(select.children(':selected').text());
+            this.uiInput.attr('title', select.children(':selected').text())
          } else {
             this.uiInput.val( "" );
             this.element.prop('selectedIndex', -1);
