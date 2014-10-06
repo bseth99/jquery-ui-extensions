@@ -62,7 +62,7 @@
 
          this._super();
 
-         this.element.removeClass( 'ui-widget' )
+         this.element.removeClass( 'ui-widget' );
 
          this._alignWithStep();
 
