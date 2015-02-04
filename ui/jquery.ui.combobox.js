@@ -126,7 +126,7 @@
                               "(?![^&;]+;)(?!<[^<>]*)(" +
                               $.ui.autocomplete.escapeRegex(request.term) +
                               ")(?![^<>]*>)(?![^&;]+;)", "gi"),
-                              "<strong>$1</strong>");
+                              '<span class="ui-combobox-highlight">$1</span>');
                     }
                     return optionData;
                   }
