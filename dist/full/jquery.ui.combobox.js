@@ -35,6 +35,17 @@
 
    $.widget( "ui.combobox", {
 
+        options: {
+            allowCustomValue: false
+        },
+
+        _setOption: function(key, value) {
+            if (key === "allowCustomValue") {
+                options.allowCustomValue = value;
+            }
+            this._super(key, value);
+        },
+
       version: "1.1.1",
 
       widgetEventPrefix: "combobox",
@@ -55,7 +66,8 @@
                       .addClass("ui-widget ui-widget-content ui-corner-left ui-combobox-input")
                       .val( select.children(':selected').text() )
                       .attr('tabindex', select.attr( 'tabindex'))
-                      .width($(this.element).width());
+                      .width($(this.element).width())
+                      .attr('title', select.children(':selected').text());
 
          wrapper = this.uiCombo =
             input.wrap( '<span>' )
@@ -70,10 +82,11 @@
              minLength: 0,
 
              appendTo: wrapper,
-             source: $.proxy( this, "_linkSelectList" )
+             source: $.proxy( this, "_linkSelectList" ),
              select: function(event, ui) {
                var selectedObj = ui.item;              
                $(this).attr('title', ui.item.value)
+             }
           });
 
          $( "<button>" )
@@ -139,7 +152,8 @@
             var changedOption = ui.item ? ui.item.option : null;
             if ( !ui.item ) {
 
-               var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( $el.val() ) + "$", "i" ),
+               var text = $el.val();
+               var matcher = new RegExp("^" + $.ui.autocomplete.escapeRegex(text) + "$", "i"),
                valid = false,
                matchContains = null,
                iContains = 0,
@@ -180,8 +194,14 @@
                       console.log("Found single match with '" + t2 + "'");
                    } else {
 
-                      // remove invalid value, as it didn't match anything
-                      $el.val( '' );
+                      if(this.options.allowCustomValue === true)
+                      {
+                          // Update title and value for new string in input
+                          $el.attr('title', text);
+                      } else {
+                          // remove invalid value, as it didn't match anything
+                          $el.val('');
+                      }
 
                       // Internally, term must change before another search is performed
                       // if the same search is performed again, the menu won't be shown
@@ -256,9 +276,14 @@
             this.uiInput.attr('title', select.children(':selected').text())
          } else {
             this.uiInput.val( "" );
+            this.uiInput.attr('title', "");
             this.element.prop('selectedIndex', -1);
          }
 
+      },
+
+      title: function () {
+          return this.uiInput.attr('title');
       },
 
       _destroy: function () {
