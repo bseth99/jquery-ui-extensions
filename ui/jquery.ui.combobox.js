@@ -47,7 +47,7 @@
 
          var self = this,
              select = this.element.hide(),
-             input, wrapper;
+             input, wrapper, position;
 
          input = this.uiInput =
                   $( "<input />" )
@@ -63,11 +63,17 @@
                .addClass( 'ui-combobox' )
                .insertAfter( select );
 
+         // pass in default jquery.ui.autocomplete position if none is specified
+         position = this.options.hasOwnProperty('position') ?
+                      this.options.position :
+                      { my: "left top", at: "left bottom", collision: "none" };
+
          input
           .autocomplete({
 
              delay: 0,
              minLength: 0,
+             position: position,
 
              appendTo: wrapper,
              source: $.proxy( this, "_linkSelectList" ),
